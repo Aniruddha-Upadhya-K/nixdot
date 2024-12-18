@@ -1,0 +1,54 @@
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    ./keymaps.nix
+
+    ./plugins
+  ];
+
+  globals = {
+    mapleader = " ";
+  };
+
+  viAlias = true;
+  vimAlias = true;
+  withNodeJs = true;
+  withPython3 = true;
+
+  extraPackages = with pkgs; [
+    typescript
+    marksman
+    ripgrep
+  ];
+
+  opts = {
+    number = true;
+    relativenumber = true;
+    mouse = "a";  # Enable mouse control
+    mousemodel = "extend"; # Mouse right-click extends the current selection
+    splitbelow = true; # A new window is put below the current one
+    splitright = true; # A new window is put right of the current one
+    ignorecase = true; # When the search query is lower-case, match both lower and upper-case
+    smartcase = true; # Override the 'ignorecase' option if the search pattern contains upper case characters
+    termguicolors = true; # Enables 24-bit RGB color in the |TUI|
+    wrap = true;
+    swapfile = false; 
+    backup = false; 
+    undofile = true;
+    incsearch = true;
+    scrolloff = 8;
+
+    # Tab options
+    shiftwidth = 2;
+    tabstop = 2;
+    expandtab = true;
+    smartindent = true;
+
+    # Folding
+    foldmethod = "expr";
+    foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()";
+    foldtext = "";
+    foldlevel = 300; # Folds with a level higher than this number will be closed
+  };
+}
