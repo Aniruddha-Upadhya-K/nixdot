@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./keymaps.nix
-
     ./plugins
+
+    ./keymaps.nix
   ];
 
   globals = {
@@ -18,9 +18,11 @@
 
   extraPackages = with pkgs; [
     typescript
-    marksman
     ripgrep
+    xclip
   ];
+
+  clipboard.providers.xclip.enable = true;
 
   opts = {
     number = true;

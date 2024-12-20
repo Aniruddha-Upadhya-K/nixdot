@@ -20,6 +20,10 @@ _Currently in very early stage. Use at your own risk_
     - [-] Neovim setup
         - [x] Keybinding
         - [x] LSP and Completions
+        - [x] Treesitter
+        - [x] Telescope
+        - [x] Oil
+        - [x] Commentary, Web dev icons
         - [ ] Theme with Pywal
         - [-] Other plugins
 - [ ] Applications and customization

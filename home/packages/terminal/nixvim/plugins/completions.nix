@@ -46,6 +46,8 @@
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-z>" = "cmp.mapping.abort()";
           "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<C-j>" = "cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior, count = 1})";
+          "<C-k>" = "cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior, count = 1})";
         };
         window = {
           completion = {
