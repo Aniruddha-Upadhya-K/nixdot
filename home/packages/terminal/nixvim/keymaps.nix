@@ -3,7 +3,7 @@
   keymaps = [
     {
       key = "J";
-      mode = "v";
+      mode = "x";
       action = ":m '>+1<CR>gv=gv";
       options = {
         silent = true;
@@ -13,7 +13,7 @@
     }
     {
       key = "K";
-      mode = "v";
+      mode = "x";
       action = ":m '<-2<CR>gv=gv";
       options = {
         silent = true;
@@ -63,8 +63,8 @@
     }
     {
       key = "<leader>d";
-      mode = ["n" "v"];
-      action = ''[["_d]]'';
+      mode = ["n" "x"];
+      action = "\"_d";
       options = {
         silent = true;
         noremap = true;
@@ -73,8 +73,8 @@
     }
     {
       key = "<leader>dp";
-      mode = "v";
-      action = ''[["_dp]]'';
+      mode = "x";
+      action = "\"_dp";
       options = {
         silent = true;
         noremap = true;
@@ -83,18 +83,18 @@
     }
     {
       key = "<leader>y";
-      mode = ["n" "v"];
-      action = ''[["+y]]'';
+      mode = ["n" "x"];
+      action = "\"+y";
       options = {
         silent = true;
         noremap = true;
-        desc = "Yank fromt the clipboard";
+        desc = "Yank to the clipboard";
       };
     }
     {
       key = "<leader>p";
       mode = "n";
-      action = ''[["+p]]'';
+      action = "\"+p";
       options = {
         silent = true;
         noremap = true;
@@ -103,7 +103,7 @@
     }
     {
       key = "<leader>kp";
-      mode = "v";
+      mode = "x";
       action = "<cmd>'<,'>copy '<-1<CR><S-v>";
       options = {
         silent = true;
@@ -113,7 +113,7 @@
     }
     {
       key = "<leader>jp";
-      mode = "v";
+      mode = "x";
       action = "<cmd>'<,'>copy '><CR><S-v>";
       options = {
         silent = true;
@@ -122,8 +122,8 @@
       };
     }
     {
-      key = "<leader>a";
-      mode = ["n" "v"];
+      key = "<C-a>";
+      mode = ["n" "x"];
       action = "gg<S-v>G";
       options = {
         silent = true;
@@ -143,8 +143,8 @@
     }
     {
       key = "<leader>s";
-      mode = ["n" "v"];
-      action = ''[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]'';
+      mode = ["n" "x"];
+      action = '':%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>'';
       options = {
         silent = true;
         noremap = true;
@@ -153,7 +153,7 @@
     }
     {
       key = "<leader>(";
-      mode = "v";
+      mode = "x";
       action = ''c(<C-r>")<ESC>'';
       options = {
         silent = true;
@@ -163,7 +163,7 @@
     }
     {
       key = "<leader>[";
-      mode = "v";
+      mode = "x";
       action = ''c[<C-r>"]<ESC>'';
       options = {
         silent = true;
@@ -173,7 +173,7 @@
     }
     {
       key = "<leader><";
-      mode = "v";
+      mode = "x";
       action = ''c<<C-r>"><ESC>'';
       options = {
         silent = true;
@@ -183,7 +183,7 @@
     }
     {
       key = ''<leader>"'';
-      mode = "v";
+      mode = "x";
       action = ''c"<C-r>""<ESC>'';
       options = {
         silent = true;
@@ -193,7 +193,7 @@
     }
     {
       key = "<leader>'";
-      mode = "v";
+      mode = "x";
       action = ''c'<C-r>"'<ESC>'';
       options = {
         silent = true;
@@ -204,25 +204,166 @@
 
     # Plugin mapping
 
-    /* {
-      key = "<leader>pv";
+    # Oil
+    {
+      key = "<C-n>";
       mode = "n";
-      action = "<cmd>oil<CR>";
+      action.__raw = ''
+        function()
+          local oil = require("oil")
+          local util = require("oil.util")
+          oil.open_float()
+          util.run_after_load(0, function()
+            oil.open_preview()
+          end)
+        end
+      '';
       options = {
         silent = true;
         noremap = true;
         desc = "[p]roject [v]iew";
-      }
+      };
     }
+    # # Lsp restart
+    # {
+    #   key = "<leader>lspr";
+    #   mode = "n";
+    #   action = "<cmd>LspRestart<CR>";
+    #   options = {
+    #     noremap = true;
+    #     desc = "[lsp] [r]estart";
+    #   };
+    # }
+    # commentary
     {
-      key = "<leader>lspr";
-      mode = "n";
-      action = "<cmd>LspRestart<CR>";
+      key = "<C-/>";
+      mode = "n"; 
+      action = "<cmd>Commentary<CR>";
       options = {
         silent = true;
         noremap = true;
-        desc = "[lsp] [r]estart";
-      }
-    } */
+        desc = "Comment current line";
+      };
+    }
+    {
+      key = "<C-/>";
+      mode = "x";
+      action = "gc";
+      options = {
+        silent = true;
+        remap = true;
+        desc = "Comment current selection";
+      };
+    }
+    # undotree
+    {
+      key = "<leader>u";
+      mode = ["n" "x"];
+      action = "<cmd>UndotreeToggle | UndotreeFocus<CR>";
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Toggle undo tree";
+      };
+    }
+    # Harpoon telescope ui
+    {
+      key = "<C-e>";
+      mode = "n";
+      action.__raw = ''
+        function()
+          local harpoon = require("harpoon")
+          local function toggle_telescope(harpoon_files)
+            local conf = require("telescope.config").values
+
+            local file_paths = {}
+
+            for _, item in ipairs(harpoon_files.items) do
+              table.insert(file_paths, item.value)
+            end
+
+            local make_finder = function()
+              local paths = {}
+              for _, item in ipairs(harpoon_files.items) do
+                table.insert(paths, item.value)
+              end
+
+              return require("telescope.finders").new_table({
+                results = paths,
+              })
+            end
+
+            require("telescope.pickers").new({}, {
+              prompt_title = "Harpoon",
+              finder = require("telescope.finders").new_table({
+                results = file_paths,
+              }),
+              previewer = conf.file_previewer({}),
+              sorter = conf.generic_sorter({}),
+              attach_mappings = function(prompt_buffer_number, map)
+                map("i", "<C-d>", function()
+                  local state = require("telescope.actions.state")
+                  local selected_entry = state.get_selected_entry()
+                  local current_picker = state.get_current_picker(prompt_buffer_number)
+
+                  harpoon:list():remove(selected_entry)
+                  current_picker:refresh(make_finder())
+                end)
+
+                return true
+              end,
+            }):find()
+          end
+          toggle_telescope(harpoon:list())
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Open harpoon window";
+      };
+    }
+    {
+      key = "<leader>a";
+      mode = "n";
+      action.__raw = ''
+        function()
+          require("harpoon"):list():add()
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Add current file to the harpoon list";
+      };
+    }
+    {
+      key = "<M-p>";
+      mode = "n";
+      action.__raw = ''
+        function()
+          require("harpoon"):list():next()
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Go to next buffer stored in harpoon list";
+      };
+    }
+    {
+      key = "<M-n>";
+      mode = "n";
+      action.__raw = ''
+        function()
+          require("harpoon"):list():prev()
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Go to previous buffer stored in harpoon list";
+      };
+    }
   ];
 }

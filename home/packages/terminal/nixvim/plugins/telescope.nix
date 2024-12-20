@@ -32,16 +32,6 @@
         enable = true;
         settings.specific_opts.codeactions = true;
       };
-      frecency = {
-        enable = true;
-        settings = {
-          show_scores = false;
-          ignore_patterns = [
-            "*.git/*"
-            "*/temp/*"
-          ];
-        };
-      };
     };
   };
 }
