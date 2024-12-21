@@ -133,7 +133,7 @@
     }
     {
       key = "jk";
-      mode = "i";
+      mode = ["i" "c" "x"];
       action = "<Esc>";
       options = {
         silent = true;

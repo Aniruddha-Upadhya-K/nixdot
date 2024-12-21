@@ -6,6 +6,7 @@
     ./telescope.nix
     ./treesitter.nix
     ./oil.nix
+    ./catppuccin.nix
   ];
 
   plugins = {

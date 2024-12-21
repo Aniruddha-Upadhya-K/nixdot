@@ -24,6 +24,7 @@ _Currently in very early stage. Use at your own risk_
         - [x] Telescope
         - [x] Oil
         - [x] Commentary, Web dev icons
+        - [x] Harpoon
         - [ ] Theme with Pywal
         - [-] Other plugins
 - [ ] Applications and customization
@@ -31,5 +32,6 @@ _Currently in very early stage. Use at your own risk_
     - [ ] Zen-browser
     - [ ] Spicetify
     - [ ] Btop
+    - [ ] Keypassx
     - [ ] Other applications with Hyprland
 
