@@ -45,10 +45,17 @@
     tree
   ];
 
+  # Install Nix-ld to be able to run unpackaged binaries
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged
+    # programs here, NOT in environment.systemPackages
+  ];
+
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Install zsh
+  # Install ZSH.
   programs.zsh.enable = true;
 
   # Allow unfree packages

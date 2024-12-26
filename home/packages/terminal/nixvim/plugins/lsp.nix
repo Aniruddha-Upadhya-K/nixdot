@@ -12,6 +12,7 @@
       html.enable = true;
       jsonls.enable = true;
       lua_ls.enable = true;
+      markdown_oxide.enable = true;
       marksman.enable = true;
       nixd.enable = true;
       prismals = {
@@ -53,6 +54,21 @@
           action = "<cmd>tab split | lua vim.lsp.buf.definition()<CR>";
         }
       ];
+    };
+  };
+  plugins.none-ls = {
+    enable = true;
+    sources.formatting = {
+      clang_format.enable = true;
+      gofmt.enable = true;
+      google_java_format.enable = true;
+      isortd.enable = true;
+      nixfmt.enable = true;
+      prettierd = {
+        enable = true;
+        disableTsServerFormatter = false;
+      };
+      blackd.enable = true;
     };
   };
 }

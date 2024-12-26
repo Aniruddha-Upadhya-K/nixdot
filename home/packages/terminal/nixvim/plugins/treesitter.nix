@@ -14,6 +14,7 @@
       lua
       make
       markdown
+      markdown-inline
       nix
       python
       regex

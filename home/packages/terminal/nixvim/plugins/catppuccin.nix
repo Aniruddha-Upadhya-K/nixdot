@@ -8,7 +8,7 @@
 
       dim_inactive = {
         enabled = true;
-        shade = "dark";
+        shade = "light";
         percentage = 0.15;
       };
 
@@ -16,7 +16,7 @@
       integrations = {
         # alpha = true;
         harpoon = true;
-        # lualine = true;
+        lualine = true;
         markdown = true;
         # gitsigns = true;
         cmp = true;

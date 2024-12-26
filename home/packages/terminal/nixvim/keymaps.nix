@@ -133,7 +133,7 @@
     }
     {
       key = "jk";
-      mode = ["i" "c" "x"];
+      mode = ["i" "c"];
       action = "<Esc>";
       options = {
         silent = true;
@@ -236,8 +236,8 @@
     # }
     # commentary
     {
-      key = "<C-/>";
-      mode = "n"; 
+      key = "<M-/>";
+      mode = ["n" "i"]; 
       action = "<cmd>Commentary<CR>";
       options = {
         silent = true;
@@ -246,7 +246,7 @@
       };
     }
     {
-      key = "<C-/>";
+      key = "<M-/>";
       mode = "x";
       action = "gc";
       options = {
@@ -363,6 +363,77 @@
         silent = true;
         noremap = true;
         desc = "Go to previous buffer stored in harpoon list";
+      };
+    }
+    # Nvim-ufo for Fold
+    {
+      key = "fk";
+      mode = "n";
+      action.__raw = ''
+        function()
+          local winid = require("ufo").peekFoldedLinesUnderCursor()
+          if not winid then
+            vim.lsp.buf.hover()
+          end
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "[f]old pee[k]";
+      };
+    }
+    {
+      key = "fa";
+      mode = "n";
+      action.__raw = ''
+        function()
+          require("ufo").openAllFolds()
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "[f]old open [a]ll";
+      };
+    }
+    {
+      key = "fc";
+      mode = "n";
+      action.__raw = ''
+        function()
+          require("ufo").closeAllFolds()
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "[f]old [c]lose all";
+      };
+    }
+    {
+      key = "ff";
+      mode = "n";
+      action = "za";
+      options = {
+        silent = true;
+        remap = true;
+        desc = "[f]old current block"; 
+      };
+    }
+    # None-ls formatting
+    {
+      key = "lf";
+      mode = "n";
+      action.__raw = ''
+        function()
+          vim.lsp.buf.format()
+        end
+      '';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "[l]SP [f]ormat whole document";
       };
     }
   ];
