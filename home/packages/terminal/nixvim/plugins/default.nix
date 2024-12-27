@@ -1,13 +1,13 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   imports = [
     ./completions.nix
     ./lsp.nix
     ./telescope.nix
     ./treesitter.nix
     ./oil.nix
-    ./catppuccin.nix
     ./fold.nix
+    ./git.nix
+    ./catppuccin.nix
   ];
 
   plugins = {
@@ -33,16 +33,26 @@
       enable = true;
       settings = {
         options.theme = "moonfly";
-        extensions = ["oil"];
-        sections.lualine_x = ["encoding" "filetype"];
+        extensions = [ "oil" ];
+        sections.lualine_x = [ "encoding" "filetype" ];
       };
     };
 
     markview = {
       enable = true;
       settings = {
-        hybrid_modes = ["i" "c"];
-        modes = ["n" "x" "no"];
+        hybrid_modes = [ "i" "c" ];
+        modes = [ "n" "x" "no" ];
+      };
+    };
+
+    tmux-navigator.enable = true;
+
+    nvim-autopairs = {
+      enable = true;
+      settings = {
+        check_ts = true;
+        fast_wrap.map = "<C-b>";
       };
     };
   };

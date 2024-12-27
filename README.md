@@ -25,9 +25,11 @@ _Currently in very early stage. Use at your own risk_
         - [x] Oil
         - [x] Commentary, Web dev icons
         - [x] Harpoon
-        - [x] Fold, Markview
+        - [x] Fold, Markview, Lualine
+        - [x] Tmux-navigator
+        - [x] Auto-pairs
+        - [x] Gitsigns & Fugitive
         - [ ] Theme with Pywal
-        - [-] Other plugins
 - [ ] Applications and customization
     - [ ] Firefox
     - [-] Zen-browser

@@ -13,7 +13,6 @@
       jsonls.enable = true;
       lua_ls.enable = true;
       markdown_oxide.enable = true;
-      marksman.enable = true;
       nixd.enable = true;
       prismals = {
         enable = true;
@@ -39,19 +38,17 @@
       };
 
       lspBuf = {
-        gd = "definition";
-        gr = "references";
-        gt = "type_definition";
-        gi = "implementation";
-        K = "hover";
+        "<leader>lr" = "references";
+        "<leader>lt" = "type_definition";
+        "<leader>li" = "implementation";
         "<leader>r" = "rename";
-        ca = "code_action";
+        "<leader>ca" = "code_action";
       };
 
       extra = [
         {
-          key = "<leader>gd";
-          action = "<cmd>tab split | lua vim.lsp.buf.definition()<CR>";
+          key = "<leader>ld";
+          action = "<cmd>vertical split | lua vim.lsp.buf.definition()<CR>";
         }
       ];
     };

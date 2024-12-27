@@ -16,7 +16,6 @@
       integrations = {
         # alpha = true;
         harpoon = true;
-        lualine = true;
         markdown = true;
         # gitsigns = true;
         cmp = true;

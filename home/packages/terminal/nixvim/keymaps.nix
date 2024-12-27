@@ -172,6 +172,16 @@
       };
     }
     {
+      key = "<leader>{";
+      mode = "x";
+      action = ''c{<C-r>"}<ESC>'';
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Add square braces [{] around selected text";
+      };
+    }
+    {
       key = "<leader><";
       mode = "x";
       action = ''c<<C-r>"><ESC>'';
@@ -367,7 +377,7 @@
     }
     # Nvim-ufo for Fold
     {
-      key = "fk";
+      key = "K";
       mode = "n";
       action.__raw = ''
         function()
@@ -380,7 +390,7 @@
       options = {
         silent = true;
         noremap = true;
-        desc = "[f]old pee[k]";
+        desc = "Pee[K] into the fold, if not hover";
       };
     }
     {
@@ -423,7 +433,7 @@
     }
     # None-ls formatting
     {
-      key = "lf";
+      key = "<leader>lf";
       mode = "n";
       action.__raw = ''
         function()
