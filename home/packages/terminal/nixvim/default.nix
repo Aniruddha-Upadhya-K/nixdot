@@ -48,9 +48,12 @@
     smartindent = true;
 
     # Folding
+    foldenable = true;
     foldmethod = "expr";
     foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()";
     foldtext = "";
-    foldlevel = 300; # Folds with a level higher than this number will be closed
+    foldlevel = 99; # Folds with a level higher than this number will be closed
+    foldlevelstart = 99;
+    foldcolumn = "1";
   };
 }

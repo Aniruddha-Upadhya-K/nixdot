@@ -8,28 +8,31 @@ _Currently in very early stage. Use at your own risk_
     - [ ] Hyprland setup
     - [ ] Rofi setup
     - [ ] Waybar setup
-    - [ ] Dynamic wallpaper and theme setup with Pywal
+    - [ ] Dynamic wallpaper and theme setup with Hellwal
 - [-] CLI setup
     - [x] ZSH setup
     - [ ] Revamp OMP
-    - [ ] TMUX setup
+    - [-] TMUX setup
         - [ ] TMUX Sessioniser
         - [ ] TMUX Resurrect
-        - [ ] Theme
+        - [-] Theme
     - [ ] Kitty terminal emulator setup
     - [-] Neovim setup
         - [x] Keybinding
-        - [x] LSP and Completions
+        - [x] LSP, Completions & Formatting
         - [x] Treesitter
         - [x] Telescope
         - [x] Oil
         - [x] Commentary, Web dev icons
         - [x] Harpoon
+        - [x] Fold, Markview, Lualine
+        - [x] Tmux-navigator
+        - [x] Auto-pairs
+        - [x] Gitsigns & Fugitive
         - [ ] Theme with Pywal
-        - [-] Other plugins
 - [ ] Applications and customization
     - [ ] Firefox
-    - [ ] Zen-browser
+    - [-] Zen-browser
     - [ ] Spicetify
     - [ ] Btop
     - [ ] Keypassx

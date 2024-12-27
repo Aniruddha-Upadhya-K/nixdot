@@ -22,10 +22,8 @@
 
       gcc
 
-      lua-language-server
-      luajitPackages.lua-lsp
-      pyright
-      marksman
+      # lua-language-server
+      # luajitPackages.lua-lsp
     ];
 
     plugins = with pkgs.vimPlugins; [
