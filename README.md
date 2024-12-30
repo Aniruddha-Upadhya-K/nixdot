@@ -4,6 +4,7 @@ _Currently in very early stage. Use at your own risk_
 
 ### Things to do:
 
+- [ ] [Configure nix home-manager flake cross platform](https://www.reddit.com/r/NixOS/comments/1bwngdo/comment/l9zjwra/)
 - [ ] Set up desktop environment with Hyprland:
     - [ ] Hyprland setup
     - [ ] Rofi setup
@@ -29,12 +30,16 @@ _Currently in very early stage. Use at your own risk_
         - [x] Tmux-navigator
         - [x] Auto-pairs
         - [x] Gitsigns & Fugitive
+        - [ ] Which key
         - [ ] Theme with Pywal
-- [ ] Applications and customization
+- [-] Applications with customizations
     - [ ] Firefox
     - [-] Zen-browser
-    - [ ] Spicetify
+    - [-] Spicetify
     - [ ] Btop
-    - [ ] Keypassx
+    - [x] Keypassxc
+    - [-] Configure Syncthing on startup
     - [ ] Other applications with Hyprland
-
+- [-] Other Applications
+    - [x] Libreoffice
+    - [x] Fastfetch

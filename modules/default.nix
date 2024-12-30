@@ -43,6 +43,7 @@
     flameshot
     btop
     tree
+    fastfetch
   ];
 
   # Install Nix-ld to be able to run unpackaged binaries
