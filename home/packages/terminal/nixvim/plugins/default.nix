@@ -8,6 +8,8 @@
     ./fold.nix
     ./git.nix
     ./catppuccin.nix
+    ./nvim-jdtls.nix
+    ./dap.nix
   ];
 
   plugins = {

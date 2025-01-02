@@ -36,6 +36,6 @@
         modules = [
           ./hosts/aspire/configuration.nix
         ];
-      }; 
+      };
     };
 }

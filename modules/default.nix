@@ -1,6 +1,27 @@
 { config, pkgs, inputs, system, ... }:
 
 {
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+
+      # Enable nix flakes
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
   imports = [ 
     ./env.nix
     inputs.home-manager.nixosModules.default 
@@ -36,6 +57,7 @@
     gcc
     nodejs
     python3
+    jdk23
     cargo
     vlc
     blender
@@ -44,6 +66,8 @@
     btop
     tree
     fastfetch
+    nemo
+    networkmanagerapplet
   ];
 
   # Install Nix-ld to be able to run unpackaged binaries
@@ -58,6 +82,19 @@
 
   # Install ZSH.
   programs.zsh.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    # set the flake package
+    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    withUWSM = true; # recommended for most users
+    xwayland.enable = true;
+  };
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -87,8 +124,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
     home = "/home/ani";
     packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
+      # kdePackages.kate
+      # thunderbird
     ];
     shell = pkgs.zsh;
   };
@@ -101,22 +138,5 @@
     };
     useUserPackages = true;
     useGlobalPkgs = true;
-  };
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      
-      # Enable nix flakes
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
   };
 }

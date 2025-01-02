@@ -19,10 +19,9 @@
   extraPackages = with pkgs; [
     typescript
     ripgrep
-    xclip
   ];
 
-  clipboard.providers.xclip.enable = true;
+  clipboard.providers.wl-copy.enable = true;
 
   opts = {
     number = true;

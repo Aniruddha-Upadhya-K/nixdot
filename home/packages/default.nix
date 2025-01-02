@@ -3,6 +3,7 @@
 { 
   imports = [
     # ./nvim
+    ./desktop
     ./terminal
     ./applications 
   ];
