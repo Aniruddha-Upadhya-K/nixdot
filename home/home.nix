@@ -9,6 +9,7 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     inputs.spicetify-nix.homeManagerModules.default
+    inputs.nix-index-database.hmModules.nix-index
 
     ./packages 
   ];
@@ -52,6 +53,15 @@
     userEmail = "aniupadhyak1234@gmail.com";
     extraConfig = {
       pull.ff = "only";
+    };
+  };
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      serif = [  "Liberation Serif" ];
+      sansSerif = [ "Ubuntu" ];
+      monospace = [ "HackNerdFontMono" ];
     };
   };
 

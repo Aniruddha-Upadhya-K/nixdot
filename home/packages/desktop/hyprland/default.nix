@@ -1,35 +1,45 @@
-{ pkgs, inputs, ... }:
-{
+{ pkgs, inputs, config, ... }:
+let user = import ../../../user.nix;
+in {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 
-    # settings = {
-    #   "$mod" = "SUPER";
-    #   bind = [ "$mod, F, exec, firefox" ", Print, exec, grimblast copy area" "$mod, q, exec, kitty" ]
-    #     ++ (
-    #       # workspaces
-    #       # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-    #       builtins.concatLists (builtins.genList (i:
-    #         let ws = i + 1;
-    #         in [
-    #           "$mod, code:1${toString i}, workspace, ${toString ws}"
-    #           "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-    #         ]) 9));
-    # };
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+    };
+
+    xwayland.enable = true;
 
     extraConfig = ''
-      source = ./test.conf
+      source = ./config.conf
     '';
+
   };
 
-  home.file.".config/hypr/test.conf".source = ./test.conf;
+  programs.hyprlock.enable = true;
 
-  programs.waybar.enable = true;
+  services.hypridle.enable = true;
+
+  home.file.".config/hypr/config.conf".source =
+    config.lib.file.mkOutOfStoreSymlink
+    "/home/${user}/.config/nixdot/home/packages/desktop/hyprland/hyprland.conf";
+
+  home.file.".config/hypr/hyprlock.conf".source =
+    config.lib.file.mkOutOfStoreSymlink
+    "/home/${user}/.config/nixdot/home/packages/desktop/hyprland/hyprlock.conf";
+
+  home.file.".config/hypr/hypridle.conf".source =
+    config.lib.file.mkOutOfStoreSymlink
+    "/home/${user}/.config/nixdot/home/packages/desktop/hyprland/hypridle.conf";
+
+  # Screenshot annotation
+  home.file.".config/satty/config.toml".source = ./satty.toml;
+
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
   };
-
-
 }

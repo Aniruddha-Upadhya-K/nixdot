@@ -5,14 +5,13 @@
     settings = {
       auto-optimise-store = true;
 
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
 
       # Enable nix flakes
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      experimental-features = [ "nix-command" "flakes" ];
 
     };
     gc = {
@@ -22,10 +21,7 @@
     };
   };
 
-  imports = [ 
-    ./env.nix
-    inputs.home-manager.nixosModules.default 
-  ];
+  imports = [ ./env.nix ../scripts inputs.home-manager.nixosModules.default ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -38,8 +34,18 @@
   networking.networkmanager.enable = true;
 
   # Enable bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware = {
+    bluetooth = {
+      enable = true; # enables support for Bluetooth
+      powerOnBoot = true; # powers up the default Bluetooth controller on boot
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket"; # Allow A2DP profile
+          Experimental = true; # Show battery of the bluetooth devices
+        };
+      };
+    };
+  };
 
   services.blueman.enable = true;
 
@@ -47,7 +53,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    curl 
+    curl
     kitty
     git
     oh-my-posh
@@ -62,20 +68,52 @@
     vlc
     blender
     ffmpeg
-    flameshot
+    (flameshot.override { enableWlrSupport = true; })
+    grim
     btop
     tree
     fastfetch
     nemo
     networkmanagerapplet
+
+    # temp
+    # jmeter
+    vscode
+    jetbrains.idea-community-bin
+
+    # HYPRLAND UTILS
+    hyprland-qtutils
+    font-awesome
+
+    # Screen shot
+    hyprshot
+    satty
+
+    # Clipboard
+    wl-clipboard
+
+    # Brightness control for Hyprland
+    brightnessctl
+
+    # Media control for Hyprland
+    playerctl
   ];
+
+  # services.grafana = {
+  #   enable   = true;
+  #   port     = 3000;
+  #   domain   = "localhost";
+  #   protocol = "http";
+  #   dataDir  = "/var/lib/grafana";
+  # };
 
   # Install Nix-ld to be able to run unpackaged binaries
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged
-    # programs here, NOT in environment.systemPackages
-  ];
+  programs.nix-ld.libraries = with pkgs;
+    [
+      # Add any missing dynamic libraries for unpackaged
+      # programs here, NOT in environment.systemPackages
+    ];
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -83,6 +121,7 @@
   # Install ZSH.
   programs.zsh.enable = true;
 
+  # Install Hyprland and its dependancies/utils
   programs.hyprland = {
     enable = true;
     # set the flake package
@@ -93,8 +132,10 @@
     xwayland.enable = true;
   };
 
+  security.pam.services.hyprlock = { };
+
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -123,19 +164,14 @@
     description = "ani";
     extraGroups = [ "networkmanager" "wheel" ];
     home = "/home/ani";
-    packages = with pkgs; [
-      # kdePackages.kate
-      # thunderbird
-    ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
   home-manager = {
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs system; };
-    users = {
-      "ani" = import ../home/home.nix;
-    };
+    users = { "ani" = import ../home/home.nix; };
     useUserPackages = true;
     useGlobalPkgs = true;
   };

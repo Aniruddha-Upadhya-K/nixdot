@@ -8,14 +8,16 @@ _Currently in very early stage. Use at your own risk_
 - [ ] Set up desktop environment with Hyprland:
   - [ ] Hyprland
     - [ ] hyprcursor - cursor library & utility
-    - [ ] hyprlock - screen locking utility
+    - [/] hyprlock - screen locking utility
+    - [/] hypridle - utility handling idle
     - [ ] hyprpicker - color picker
     - [ ] hyprchroma - making windows translucent
     - [?] hy3 - i3/sway like manual tiling layout
     - [?] hypr-dynamic-cursors - shake to find cursor, and other effects
     - [?] hypr-darkwindow - invert colors of specific window
   - [ ] rofi/wofi - application launcher
-  - [ ] waybar - status bar
+  - [/] waybar - status bar
+  - [ ] wlogout - logout menu
   - [ ] swww - wallpaper daemon
   - [ ] cb/clipse & wl-clipboard - clipboard manager
   - [ ] swaync/dunst - notification daemon
@@ -56,7 +58,7 @@ _Currently in very early stage. Use at your own risk_
   - [ ] OBS Studio - screen record
   - [ ] Firefox
   - [ ] Zen-browser
-  - [ ] flameshot - screen shot
+  - [x] hyprlock & satti/_flameshot_ - screen shot
   - [ ] Spicetify
   - [?] wf-osk/wvkbd - on screen keyboard
   - [!] image viewer ???
