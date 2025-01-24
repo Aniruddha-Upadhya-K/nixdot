@@ -21,7 +21,12 @@
     };
   };
 
-  imports = [ ./env.nix ../scripts inputs.home-manager.nixosModules.default ];
+  imports = [
+    ./env.nix
+    ../scripts
+    ./stylix.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -54,7 +59,6 @@
   environment.systemPackages = with pkgs; [
     wget
     curl
-    kitty
     git
     oh-my-posh
     zoxide
@@ -75,6 +79,8 @@
     fastfetch
     nemo
     networkmanagerapplet
+    jq
+    wl-screenrec
 
     # temp
     # jmeter
@@ -121,6 +127,15 @@
   # Install ZSH.
   programs.zsh.enable = true;
 
+  # Install Docker.
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
   # Install Hyprland and its dependancies/utils
   programs.hyprland = {
     enable = true;
@@ -162,7 +177,7 @@
   users.users.ani = {
     isNormalUser = true;
     description = "ani";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     home = "/home/ani";
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
@@ -174,5 +189,6 @@
     users = { "ani" = import ../home/home.nix; };
     useUserPackages = true;
     useGlobalPkgs = true;
+    backupFileExtension = "backup";
   };
 }

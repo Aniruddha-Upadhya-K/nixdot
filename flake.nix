@@ -30,16 +30,19 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations.aspire = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs system; };
+        specialArgs = { inherit inputs system stylix; };
         modules = [
+          stylix.nixosModules.stylix
           ./hosts/aspire/configuration.nix
         ];
       };

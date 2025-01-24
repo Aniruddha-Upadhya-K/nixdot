@@ -118,7 +118,7 @@ window#waybar.hidden {
     }
 }
 
-#battery.critical:not(.charging) #battery.critical:not(.plugged) {
+#battery.critical:not(.charging) {
     background-color: #f53c3c;
     color: #ffffff;
     animation-name: blink;

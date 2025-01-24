@@ -7,8 +7,20 @@
         adblock
         hidePodcasts
         shuffle # shuffle+ (special characters are sanitized out of extension names)
+        featureShuffle
+        songStats
+        betterGenres
+        beautifulLyrics
       ];
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
+      enabledSnippets = with spicePkgs.snippets; [
+        fixMainViewWidth
+        newHoverPanel
+        hideMadeForYou
+      ];
+      enabledCustomApps = with spicePkgs.apps; [
+        newReleases
+        ncsVisualizer
+        localFiles
+      ];
     };
 }

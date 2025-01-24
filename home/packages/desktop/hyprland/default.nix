@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, inputs, config, lib, ... }:
 let user = import ../../../user.nix;
 in {
   wayland.windowManager.hyprland = {
@@ -19,15 +19,29 @@ in {
 
   };
 
-  programs.hyprlock.enable = true;
+  home.pointerCursor = {
+    package = lib.mkForce pkgs.bibata-cursors;
+    name = lib.mkForce "Bibata-Modern-Classic";
+    hyprcursor = {
+      enable = true;
+    };
+    gtk.enable = true;
+    size = lib.mkForce 22;
+  };
 
+  programs.hyprlock = {
+    enable = true;
+    extraConfig = lib.mkAfter ''
+      source = ./hyprlock-config.conf
+    '';
+  };
   services.hypridle.enable = true;
 
   home.file.".config/hypr/config.conf".source =
     config.lib.file.mkOutOfStoreSymlink
     "/home/${user}/.config/nixdot/home/packages/desktop/hyprland/hyprland.conf";
 
-  home.file.".config/hypr/hyprlock.conf".source =
+  home.file.".config/hypr/hyprlock-config.conf".source =
     config.lib.file.mkOutOfStoreSymlink
     "/home/${user}/.config/nixdot/home/packages/desktop/hyprland/hyprlock.conf";
 

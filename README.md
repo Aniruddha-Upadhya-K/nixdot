@@ -7,9 +7,9 @@ _Currently in very early stage. Use at your own risk_
 - [ ] [Configure nix home-manager flake cross platform](https://www.reddit.com/r/NixOS/comments/1bwngdo/comment/l9zjwra/)
 - [ ] Set up desktop environment with Hyprland:
   - [ ] Hyprland
-    - [ ] hyprcursor - cursor library & utility
+    - [/] hyprcursor - cursor library & utility
     - [/] hyprlock - screen locking utility
-    - [/] hypridle - utility handling idle
+    - [x] hypridle - utility handling idle
     - [ ] hyprpicker - color picker
     - [ ] hyprchroma - making windows translucent
     - [?] hy3 - i3/sway like manual tiling layout
@@ -33,7 +33,7 @@ _Currently in very early stage. Use at your own risk_
     - [ ] TMUX Sessioniser
     - [ ] TMUX Resurrect
     - [/] Theme
-  - [ ] Kitty terminal emulator setup
+  - [x] Kitty terminal emulator setup
   - [/] Neovim setup
     - [x] Keybinding
     - [x] LSP, Completions & Formatting
@@ -45,21 +45,21 @@ _Currently in very early stage. Use at your own risk_
     - [x] Fold, Markview, Lualine
     - [x] Tmux-navigator
     - [x] Auto-pairs
-    - [x] Gitsigns & Fugitive
+    - [/] Gitsigns & Fugitive
     - [ ] Trouble and setting other plugins support for Trouble
     - [ ] Which key, Cloak & Alpha
     - [ ] Theme with Pywal
 - [/] Applications with customizations
   - [x] Keypassxc
-  - [/] Configure Syncthing on startup
+  - [x] Configure Syncthing on startup
   - [ ] btop - system monitor
   - [ ] nemo (Cinnamon) - file manager
   - [ ] okular (KDE) - document viewer
   - [ ] OBS Studio - screen record
   - [ ] Firefox
   - [ ] Zen-browser
-  - [x] hyprlock & satti/_flameshot_ - screen shot
-  - [ ] Spicetify
+  - [x] hyprlock & satty/_flameshot_ - screen shot
+  - [/] Spicetify
   - [?] wf-osk/wvkbd - on screen keyboard
   - [!] image viewer ???
   - [ ] Other applications with Hyprland

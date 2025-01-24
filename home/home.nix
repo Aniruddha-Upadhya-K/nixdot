@@ -11,6 +11,7 @@
     inputs.spicetify-nix.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
 
+    ./stylix.nix
     ./packages 
   ];
 

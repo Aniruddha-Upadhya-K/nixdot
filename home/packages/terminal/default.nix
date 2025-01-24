@@ -6,7 +6,7 @@ let
     module = import ./nixvim;
   };
 in {
-  imports = [ ./tmux ./zsh ];
+  imports = [ ./tmux ./zsh ./kitty ];
 
   home.packages = with pkgs; [ nvim ];
 }
