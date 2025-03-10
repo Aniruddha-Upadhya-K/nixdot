@@ -81,9 +81,12 @@
     networkmanagerapplet
     jq
     wl-screenrec
+    gimp-with-plugins
+    gthumb
+    brave
+    eza
 
     # temp
-    # jmeter
     vscode
     jetbrains.idea-community-bin
 

@@ -89,6 +89,7 @@
       nu = "nix-update";
       c = "clear";
       e = "exit";
+      ls = "eza --icons";
     };
 
     plugins = with pkgs;
