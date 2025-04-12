@@ -1,8 +1,16 @@
 { pkgs, ... }:
-{
+let
+  inputImage = ../wallpapers/spiderman.jpg;
+  brightness = "-10";
+  contrast = "0";
+  fillColor = "black";
+in {
   stylix = {
     enable = true;
-    image = ../wallpapers/arcane.png;
+    image = pkgs.runCommand "dimmed-background.png" { } ''
+      ${pkgs.imagemagick}/bin/magick "${inputImage}" -brightness-contrast ${brightness},${contrast} -fill ${fillColor} $out
+    '';
+
     polarity = "dark";
     fonts = {
       serif = {
@@ -31,6 +39,7 @@
     targets = {
       firefox.enable = false;
       hyprlock.enable = false;
+      tmux.enable = false;
     };
   };
 }

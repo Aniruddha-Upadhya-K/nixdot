@@ -141,8 +141,8 @@
         "",
         ""
       ]
-    }
-    // "on-click": "pavucontrol"
+    },
+    "on-click": "pavucontrol"
   }
   // "custom/media": {
   //   "format": "{icon} {}",

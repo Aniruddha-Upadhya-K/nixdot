@@ -30,6 +30,12 @@
     spectacle
   ];
 
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "breeze";
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

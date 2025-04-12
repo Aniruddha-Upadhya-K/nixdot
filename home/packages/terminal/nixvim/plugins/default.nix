@@ -43,8 +43,8 @@
     markview = {
       enable = true;
       settings = {
-        hybrid_modes = [ "i" "c" ];
-        modes = [ "n" "x" "no" ];
+        preview.hybrid_modes = [ "i" "c" ];
+        preview.modes = [ "n" "x" "no" ];
       };
     };
 

@@ -3,7 +3,7 @@
 {
   programs.zsh = {
     enable = true;
-    defaultKeymap = "vicmd";
+    defaultKeymap = "viins";
     dotDir = ".config/zsh";
     enableCompletion = true;
     autosuggestion.enable = true;

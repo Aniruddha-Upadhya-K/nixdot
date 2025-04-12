@@ -65,6 +65,8 @@
     fzf
     tmux
     gcc
+    gnumake
+    clangStdenv
     nodejs
     python3
     jdk23
@@ -85,6 +87,9 @@
     gthumb
     brave
     eza
+    units
+    pavucontrol # audio control
+    bat
 
     # temp
     vscode
