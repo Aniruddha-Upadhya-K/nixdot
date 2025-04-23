@@ -9,7 +9,7 @@
     ./git.nix
     ./catppuccin.nix
     ./nvim-jdtls.nix
-    ./dap.nix
+    # ./dap.nix
   ];
 
   plugins = {
@@ -57,5 +57,7 @@
         fast_wrap.map = "<C-b>";
       };
     };
+
+    indent-blankline.enable = true;
   };
 }
