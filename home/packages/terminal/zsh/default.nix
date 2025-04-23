@@ -3,7 +3,7 @@
 {
   programs.zsh = {
     enable = true;
-    defaultKeymap = "vicmd";
+    defaultKeymap = "viins";
     dotDir = ".config/zsh";
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -89,6 +89,7 @@
       nu = "nix-update";
       c = "clear";
       e = "exit";
+      ls = "eza --icons";
     };
 
     plugins = with pkgs;

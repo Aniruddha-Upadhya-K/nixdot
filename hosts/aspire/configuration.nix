@@ -24,6 +24,18 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  environment.plasma6.excludePackages = with pkgs.libsForQt5; [
+    plasma-browser-integration
+    konsole
+    spectacle
+  ];
+
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "breeze";
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -34,7 +46,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

@@ -1,9 +1,31 @@
 { config, pkgs, inputs, system, ... }:
 
 {
-  imports = [ 
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+
+      # Enable nix flakes
+      experimental-features = [ "nix-command" "flakes" ];
+
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
+  imports = [
     ./env.nix
-    inputs.home-manager.nixosModules.default 
+    ../scripts
+    ./stylix.nix
+    inputs.home-manager.nixosModules.default
   ];
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -17,8 +39,18 @@
   networking.networkmanager.enable = true;
 
   # Enable bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware = {
+    bluetooth = {
+      enable = true; # enables support for Bluetooth
+      powerOnBoot = true; # powers up the default Bluetooth controller on boot
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket"; # Allow A2DP profile
+          Experimental = true; # Show battery of the bluetooth devices
+        };
+      };
+    };
+  };
 
   services.blueman.enable = true;
 
@@ -26,37 +58,117 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    curl 
-    kitty
+    curl
     git
     oh-my-posh
     zoxide
     fzf
     tmux
     gcc
+    gnumake
+    clangStdenv
     nodejs
     python3
+    jdk23
     cargo
     vlc
     blender
     ffmpeg
-    flameshot
+    (flameshot.override { enableWlrSupport = true; })
+    grim
     btop
     tree
+    fastfetch
+    nemo
+    networkmanagerapplet
+    jq
+    wl-screenrec
+    gimp-with-plugins
+    gthumb
+    brave
+    eza
+    units
+    pavucontrol # audio control
+    bat
+    valgrind
+
+    # temp
+    vscode
+    jetbrains.idea-community-bin
+
+    # HYPRLAND UTILS
+    hyprland-qtutils
+    font-awesome
+
+    # Screen shot
+    hyprshot
+    satty
+
+    # Clipboard
+    wl-clipboard
+
+    # Brightness control for Hyprland
+    brightnessctl
+
+    # Media control for Hyprland
+    playerctl
   ];
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "mydatabase" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
+
+  # services.grafana = {
+  #   enable   = true;
+  #   port     = 3000;
+  #   domain   = "localhost";
+  #   protocol = "http";
+  #   dataDir  = "/var/lib/grafana";
+  # };
 
   # Install Nix-ld to be able to run unpackaged binaries
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged
-    # programs here, NOT in environment.systemPackages
-  ];
+  programs.nix-ld.libraries = with pkgs;
+    [
+      # Add any missing dynamic libraries for unpackaged
+      # programs here, NOT in environment.systemPackages
+    ];
 
   # Install firefox.
   programs.firefox.enable = true;
 
   # Install ZSH.
   programs.zsh.enable = true;
+
+  # Install Docker.
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
+  # Install Hyprland and its dependancies/utils
+  programs.hyprland = {
+    enable = true;
+    # set the flake package
+    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    withUWSM = true; # recommended for most users
+    xwayland.enable = true;
+  };
+
+  security.pam.services.hyprlock = { };
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -83,39 +195,18 @@
   users.users.ani = {
     isNormalUser = true;
     description = "ani";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     home = "/home/ani";
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
   home-manager = {
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs system; };
-    users = {
-      "ani" = import ../home/home.nix;
-    };
+    users = { "ani" = import ../home/home.nix; };
     useUserPackages = true;
     useGlobalPkgs = true;
-  };
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      
-      # Enable nix flakes
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
+    backupFileExtension = "backup";
   };
 }

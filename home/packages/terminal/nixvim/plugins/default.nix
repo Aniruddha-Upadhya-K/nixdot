@@ -8,6 +8,8 @@
     ./fold.nix
     ./git.nix
     ./catppuccin.nix
+    ./nvim-jdtls.nix
+    # ./dap.nix
   ];
 
   plugins = {
@@ -41,8 +43,8 @@
     markview = {
       enable = true;
       settings = {
-        hybrid_modes = [ "i" "c" ];
-        modes = [ "n" "x" "no" ];
+        preview.hybrid_modes = [ "i" "c" ];
+        preview.modes = [ "n" "x" "no" ];
       };
     };
 
@@ -55,5 +57,7 @@
         fast_wrap.map = "<C-b>";
       };
     };
+
+    indent-blankline.enable = true;
   };
 }

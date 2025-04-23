@@ -4,37 +4,65 @@ _Currently in very early stage. Use at your own risk_
 
 ### Things to do:
 
+- [ ] [Configure nix home-manager flake cross platform](https://www.reddit.com/r/NixOS/comments/1bwngdo/comment/l9zjwra/)
 - [ ] Set up desktop environment with Hyprland:
-    - [ ] Hyprland setup
-    - [ ] Rofi setup
-    - [ ] Waybar setup
-    - [ ] Dynamic wallpaper and theme setup with Hellwal
-- [-] CLI setup
-    - [x] ZSH setup
-    - [ ] Revamp OMP
-    - [-] TMUX setup
-        - [ ] TMUX Sessioniser
-        - [ ] TMUX Resurrect
-        - [-] Theme
-    - [ ] Kitty terminal emulator setup
-    - [-] Neovim setup
-        - [x] Keybinding
-        - [x] LSP, Completions & Formatting
-        - [x] Treesitter
-        - [x] Telescope
-        - [x] Oil
-        - [x] Commentary, Web dev icons
-        - [x] Harpoon
-        - [x] Fold, Markview, Lualine
-        - [x] Tmux-navigator
-        - [x] Auto-pairs
-        - [x] Gitsigns & Fugitive
-        - [ ] Theme with Pywal
-- [ ] Applications and customization
-    - [ ] Firefox
-    - [-] Zen-browser
-    - [ ] Spicetify
-    - [ ] Btop
-    - [ ] Keypassx
-    - [ ] Other applications with Hyprland
-
+  - [ ] Hyprland
+    - [/] hyprcursor - cursor library & utility
+    - [/] hyprlock - screen locking utility
+    - [x] hypridle - utility handling idle
+    - [ ] hyprpicker - color picker
+    - [ ] hyprchroma - making windows translucent
+    - [?] hy3 - i3/sway like manual tiling layout
+    - [?] hypr-dynamic-cursors - shake to find cursor, and other effects
+    - [?] hypr-darkwindow - invert colors of specific window
+  - [ ] rofi/wofi - application launcher
+  - [/] waybar - status bar
+  - [ ] wlogout - logout menu
+  - [ ] swww - wallpaper daemon
+  - [ ] cb/clipse & wl-clipboard - clipboard manager
+  - [ ] swaync/dunst - notification daemon
+  - [ ] nm-applet - network interface
+  - [ ] nwg-dock/glx-dock - docks (bottom tool bar)
+  - [?] wlhc - hotcorner (execute a command when pointer touches corner of the screen)
+  - [?] eww - widgets
+  - [ ] Dynamic wallpaper and theme setup with Hellwal
+- [/] CLI setup
+  - [x] ZSH setup
+  - [ ] Revamp OMP
+  - [/] TMUX setup
+    - [ ] TMUX Sessioniser
+    - [ ] TMUX Resurrect
+    - [/] Theme
+  - [x] Kitty terminal emulator setup
+  - [/] Neovim setup
+    - [x] Keybinding
+    - [x] LSP, Completions & Formatting
+    - [x] Treesitter
+    - [x] Telescope
+    - [x] Oil
+    - [x] Commentary, Web dev icons
+    - [x] Harpoon
+    - [x] Fold, Markview, Lualine
+    - [x] Tmux-navigator
+    - [x] Auto-pairs
+    - [/] Gitsigns & Fugitive
+    - [ ] Trouble and setting other plugins support for Trouble
+    - [ ] Which key, Cloak & Alpha
+    - [ ] Theme with Pywal
+- [/] Applications with customizations
+  - [x] Keypassxc
+  - [x] Configure Syncthing on startup
+  - [ ] btop - system monitor
+  - [ ] nemo (Cinnamon) - file manager
+  - [ ] okular (KDE) - document viewer
+  - [ ] OBS Studio - screen record
+  - [ ] Firefox
+  - [ ] Zen-browser
+  - [x] hyprlock & satty/_flameshot_ - screen shot
+  - [/] Spicetify
+  - [?] wf-osk/wvkbd - on screen keyboard
+  - [!] image viewer ???
+  - [ ] Other applications with Hyprland
+- [/] Other Applications
+  - [x] Libreoffice
+  - [x] Fastfetch

@@ -33,19 +33,19 @@
         extraConfig = ''
           set -g @catppuccin_flavor "mocha"
 
-          set -g @catppuccin_window_status_style "custom"
+          set -g @catppuccin_window_status_style "rounded"
           set -g @catppuccin_window_number_position "left"
           set -g @catppuccin_window_default_text " #W"
 
-          set -g @catppuccin_window_left_separator "█"
-          set -g @catppuccin_window_middle_separator "█"
-          set -g @catppuccin_window_right_separator "█"
+          # set -g @catppuccin_window_left_separator "█"
+          # set -g @catppuccin_window_middle_separator "█"
+          # set -g @catppuccin_window_right_separator "█"
 
-          set -g @catppuccin_status_left_separator " "
-          set -g @catppuccin_status_middle_separator " █"
-          set -g @catppuccin_status_right_separator "█"
-          set -g @catppuccin_status_connect_separator "no"
-          set -g @catppuccin_status_background "#202020"
+          # set -g @catppuccin_status_left_separator " "
+          # set -g @catppuccin_status_middle_separator " █"
+          # set -g @catppuccin_status_right_separator "█"
+          # set -g @catppuccin_status_background "#202020"
+          set -g @catppuccin_status_connect_separator "yes"
 
           set -g status-left-length "100"
           set -g status-right-length "100"
