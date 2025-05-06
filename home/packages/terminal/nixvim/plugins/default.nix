@@ -9,6 +9,7 @@
     ./git.nix
     ./catppuccin.nix
     ./nvim-jdtls.nix
+    ./trouble.nix
     # ./dap.nix
   ];
 

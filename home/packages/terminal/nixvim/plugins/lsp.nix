@@ -25,6 +25,7 @@
         installRustc = true;
       };
       ts_ls.enable = true;
+      astro.enable = true;
       tailwindcss.enable = true;
       yamlls.enable = true;
     };
@@ -66,6 +67,10 @@
         disableTsServerFormatter = false;
       };
       blackd.enable = true;
+    };
+    sources.diagnostics = {
+      cppcheck.enable = true;
+      pylint.enable = true;
     };
   };
 }

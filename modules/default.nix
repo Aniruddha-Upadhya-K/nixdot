@@ -91,6 +91,8 @@
     pavucontrol # audio control
     bat
     valgrind
+    bun
+    gdb
 
     # temp
     vscode
