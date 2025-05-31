@@ -73,4 +73,15 @@
       pylint.enable = true;
     };
   };
+  plugins.lint = {
+    enable = true;
+    lintersByFt = {
+      c = [ "cppcheck" ];
+      typescript = [ "eslint_d" ];
+      python = [ "ruff" ];
+      nix = [ "nix" ];
+      go = [ "golangcilint" ];
+      docker = [ "hadolint" ];
+    };
+  };
 }
