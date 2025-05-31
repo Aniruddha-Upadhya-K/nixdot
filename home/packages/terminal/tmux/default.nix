@@ -24,9 +24,17 @@
     # Set the $TERM variable
     terminal = "screen-256color";
 
+    # Enable tmuxinator
+    tmuxinator.enable = true;
+
     # Plugins
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
+
+      {
+        plugin = resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      }
 
       {
         plugin = catppuccin;
@@ -58,6 +66,8 @@
     ];
 
     extraConfig = ''
+      set -g renumber-windows on
+
       # Source tmux config
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf

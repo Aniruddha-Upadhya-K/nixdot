@@ -21,7 +21,7 @@
       searchDownKey = [ "^N" ];
       searchUpKey = [ "^P" ];
     };
-    initExtra = ''
+    initContent = ''
       clear
       export PATH=$PATH:~/.local/bin/
 
@@ -89,7 +89,7 @@
       nu = "nix-update";
       c = "clear";
       e = "exit";
-      ls = "eza --icons";
+      ls = "eza --icons always";
     };
 
     plugins = with pkgs;

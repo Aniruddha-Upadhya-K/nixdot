@@ -57,52 +57,58 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Applications
+    vlc
+    blender
+    (flameshot.override { enableWlrSupport = true; })
+    nemo
+    networkmanagerapplet
+    gimp-with-plugins
+    gthumb
+    brave # backup
+    vscode # backup
+
+    # CMD tools
+    eza
+    units
+    bat
+    jq
+    fastfetch
+    btop
+    tree
+    ffmpeg
     wget
     curl
-    git
     oh-my-posh
     zoxide
     fzf
     tmux
-    gcc
-    gnumake
-    clangStdenv
+
+    # Dev (language related)
     nodejs
+    bun
     python3
     jdk23
     cargo
-    vlc
-    blender
-    ffmpeg
-    (flameshot.override { enableWlrSupport = true; })
-    grim
-    btop
-    tree
-    fastfetch
-    nemo
-    networkmanagerapplet
-    jq
-    wl-screenrec
-    gimp-with-plugins
-    gthumb
-    brave
-    eza
-    units
-    pavucontrol # audio control
-    bat
-    valgrind
+    git
 
-    # temp
-    vscode
-    jetbrains.idea-community-bin
+    # C/C++ development
+    gcc
+    gnumake
+    gdb
+    valgrind
+    clangStdenv
+    bear
 
     # HYPRLAND UTILS
     hyprland-qtutils
     font-awesome
 
-    # Screen shot
+    # Screen shot/record
+    grim
     hyprshot
     satty
+    wl-screenrec
 
     # Clipboard
     wl-clipboard
@@ -112,7 +118,10 @@
 
     # Media control for Hyprland
     playerctl
+    pavucontrol # audio control
   ];
+
+  systemd.coredump.enable = false;
 
   services.postgresql = {
     enable = true;
@@ -122,14 +131,6 @@
       local all       all     trust
     '';
   };
-
-  # services.grafana = {
-  #   enable   = true;
-  #   port     = 3000;
-  #   domain   = "localhost";
-  #   protocol = "http";
-  #   dataDir  = "/var/lib/grafana";
-  # };
 
   # Install Nix-ld to be able to run unpackaged binaries
   programs.nix-ld.enable = true;
