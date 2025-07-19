@@ -109,6 +109,7 @@
     hyprshot
     satty
     wl-screenrec
+    obs-studio
 
     # Clipboard
     wl-clipboard
