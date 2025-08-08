@@ -87,6 +87,10 @@
       man = "batman";
       tmux = "tmux -u";
       btop = "btop --force-utf";
+
+      # nix helper
+      nixos-rebuild = "nh os";
+      nix-collect-garbage = "nh clean";
     };
 
     plugins = with pkgs;
