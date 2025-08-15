@@ -1,13 +1,13 @@
 # git is core no matter what but additional settings may could be added made in optional/foo   eg: development.nix
-{ pkgs, config, ... }:
+{ pkgs, hostSpec, ... }:
 
 {
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
 
-    userName = config.hostSpec.handle;
-    userEmail = config.hostSpec.email;
+    userName = hostSpec.handle;
+    userEmail = hostSpec.email;
 
     ignores = [
       ".csvignore"

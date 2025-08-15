@@ -4,6 +4,7 @@
   pkgs,
   config,
   lib,
+  isDarwin,
   ...
 }:
 let
@@ -25,7 +26,7 @@ in
 // lib.optionalAttrs (inputs ? "home-manager") {
   home-manager = {
     extraSpecialArgs = {
-      inherit pkgs inputs;
+      inherit pkgs inputs isDarwin;
       hostSpec = config.hostSpec;
     };
     users.${hostSpec.username}.imports = lib.flatten (

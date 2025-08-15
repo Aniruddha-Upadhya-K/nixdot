@@ -1,4 +1,5 @@
-{ pkgs, inputs, config, lib, hostSpec, ... }:
+{ pkgs, inputs, config, hostSpec, lib, ... }:
+
 {
   imports =  [
     ./hypridle.nix

@@ -16,7 +16,7 @@
   extraPackages = with pkgs; [ typescript ripgrep ];
 
   clipboard.providers.wl-copy = {
-    enable = !hostSpec.isDarwin;
+    enable = !(hostSpec.isDarwin);
     package = pkgs.wl-clipboard;
   };
 

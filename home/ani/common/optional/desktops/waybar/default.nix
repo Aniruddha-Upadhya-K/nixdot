@@ -1,4 +1,4 @@
-{ pkgs, config, lib, hostSpec, ... }:
+{ config, lib, ... }:
 
 {
   programs.waybar = {
@@ -10,9 +10,9 @@
 
   home.file.".config/waybar/config.jsonc".source =
     config.lib.file.mkOutOfStoreSymlink
-    "/home/${hostSpec.username}/.config/nixdot/home/packages/desktop/waybar/config.jsonc";
+    (lib.custom.relativeToRoot "home/ani/common/optional/desktops/waybar/config.jsonc");
 
   home.file.".config/waybar/config.css".source =
     config.lib.file.mkOutOfStoreSymlink
-    "/home/${hostSpec.username}/.config/nixdot/home/packages/desktop/waybar/style.css";
+    (lib.custom.relativeToRoot "home/ani/common/optional/desktops/waybar/style.css");
 }

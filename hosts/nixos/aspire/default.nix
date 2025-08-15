@@ -54,6 +54,17 @@
   hostSpec = {
     hostName = "aspire";
     arch = "x86_64-linux"; # values should be one of "x86_64-linux", "aarch64-darwin" etc
+    desktopEnv = "hyprland";
+
+    defaults = {
+      terminal = "kitty";
+      fileManager = "nemo";
+      launcher = {
+        app = "rofi";
+        cmd = "pkill rofi || rofi -show drun";
+      };
+      browser = "zen-beta";
+    };
   };
 
   networking = {

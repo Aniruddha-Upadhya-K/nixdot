@@ -1,5 +1,7 @@
 { lib, hostSpec, ... }:
 
+lib.warnIf (hostSpec.desktopEnv == null) "hostSpec.desktopEnv is not set"
+
 {
   imports = lib.flatten [
     # Nixos setup

@@ -1,4 +1,7 @@
-{ pkgs, hostSpec, ... }:
+{ pkgs, lib, hostSpec, ... }:
+
+assert lib.assertMsg (hostSpec.defaults.fileManager != null) "hostSpec.fileManager not set";
+
 let 
   fileManager = 
     if (hostSpec.defaults.fileManager == "nemo") then "${pkgs.nemo-with-extensions}"

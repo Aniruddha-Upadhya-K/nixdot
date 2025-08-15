@@ -1,24 +1,38 @@
-{ pkgs, ... }:
+{ hostSpec, pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [
+  home.packages = lib.flatten (with pkgs; [
     # Development
     tokei
-
-    # Office
-    libreoffice
 
     # Privacy
     keepassxc
 
     # Media
     ffmpeg
-    vlc
-    gthumb
+
+    (if hostSpec.isDarwin then vlc-bin else vlc)
 
     # Media production
-    blender
-    gimp3-with-plugins
-    obs-studio
-  ];
-}
+
+    (lib.optional (!hostSpec.isDarwin) [
+      # Office
+      libreoffice
+
+      # Media
+      gthumb
+      obs-studio
+      gimp3-with-plugins
+      blender
+    ])
+  ]);
+} 
+# // lib.optionalAttrs (hostSpec.isDarwin) {
+#   homebrew = {
+#     casks = [
+#       "obs"
+#       "gimp"
+#       "blender"
+#     ];
+#   };
+# }

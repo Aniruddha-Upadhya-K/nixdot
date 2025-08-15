@@ -12,14 +12,12 @@
     #
     common/optional
     common/optional/browsers
-    common/optional/desktops # default is hyprland
+    common/optional/desktops # default is hyprland for linux & aerospace for mac
     common/optional/development
-    common/optional/fileManager.nix
-    common/optional/stylix.nix
     common/optional/syncthing.nix
     common/optional/tools.nix
-    common/optional/ui.nix
-    common/optional/xdg.nix # file associations
+    # common/optional/stylix.nix
+    # common/optional/ui.nix
     # common/optional/atuin.nix
   ];
 }

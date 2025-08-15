@@ -1,12 +1,14 @@
 #FIXME: Move attrs that will only work on linux to nixos.nix
 #FIXME: if pulling in homemanager for isMinimal maybe set up conditional for some packages
 {
-  config,
   lib,
   pkgs,
   hostSpec,
   ...
 }:
+
+assert lib.assertMsg (hostSpec.defaults.terminal != null) "default terminal emulator is not set";
+
 let
   platform = if hostSpec.isDarwin then "darwin" else "nixos";
 in
@@ -30,11 +32,9 @@ in
 
   inherit hostSpec;
 
-  services.ssh-agent.enable = true;
-
   home = {
-    username = lib.mkDefault config.hostSpec.username;
-    homeDirectory = lib.mkDefault config.hostSpec.home;
+    username = lib.mkDefault hostSpec.username;
+    homeDirectory = lib.mkDefault hostSpec.home;
     stateVersion = lib.mkDefault "23.05";
     sessionPath = [
       "$HOME/.local/bin"
@@ -50,29 +50,6 @@ in
     };
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
 
-  };
-  #TODO(xdg): maybe move this to its own xdg.nix?
-  # xdg packages are pulled in below
-  xdg = {
-    enable = true;
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-      desktop = "${config.home.homeDirectory}/.desktop";
-      documents = "${config.home.homeDirectory}/documents";
-      download = "${config.home.homeDirectory}/downloads";
-      music = "${config.home.homeDirectory}/media/audios";
-      pictures = "${config.home.homeDirectory}/media/images";
-      videos = "${config.home.homeDirectory}/media/videos";
-      publicShare = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
-      templates = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
-
-      extraConfig = {
-        # publicshare and templates defined as null here instead of as options because
-        XDG_PUBLICSHARE_DIR = "/var/empty";
-        XDG_TEMPLATES_DIR = "/var/empty";
-      };
-    };
   };
 
   home.packages = with pkgs; [
@@ -94,10 +71,7 @@ in
     tree # cli dir tree viewer
     units
     unzip # zip extraction
-    wev # show wayland events. also handy for detecting keypress codes
     wget # downloader
-    xdg-utils # provide cli tools such as `xdg-mime` and `xdg-open`
-    xdg-user-dirs
     yq-go # yaml pretty printer and manipulator
     zip # zip compression
   ];

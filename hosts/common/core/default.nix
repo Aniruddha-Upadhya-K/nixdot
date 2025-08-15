@@ -36,9 +36,11 @@ in
   networking.hostName = config.hostSpec.hostName;
 
   # System-wide packages, in case we log in as root
-  environment.systemPackages = [ pkgs.openssh ];
+  environment.systemPackages = with pkgs; [ 
+    openssh 
+    mtr 
+  ];
 
-  programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -83,7 +85,7 @@ in
 
       trusted-users = [ "@wheel" ];
       # Deduplicate and optimize nix store
-      auto-optimise-store = true;
+      # auto-optimise-store = true; # known to corrupt the Nix Store, please use `nix.optimise.automatic` instead
       warn-dirty = false;
 
       allow-import-from-derivation = true;

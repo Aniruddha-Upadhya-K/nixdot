@@ -1,6 +1,6 @@
-{ ... }:
+{ isDarwin, pkgs, ... }:
 
-{
+if !isDarwin then {
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -8,4 +8,6 @@
       setSocketVariable = true;
     };
   };
+} else {
+  environment.systemPackages = with pkgs; [ docker ];
 }

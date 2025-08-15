@@ -1,4 +1,5 @@
-{ pkgs, hostSpec, ... }:
+{ lib, pkgs, hostSpec, ... }:
+
 let
   browser = [ "${hostSpec.defaults.browser}.desktop" ];
   editor = [ "${hostSpec.defaults.editor}.desktop" ];
@@ -6,7 +7,7 @@ let
   writer = [ "libreoffice-writer.desktop" ];
   spreadsheet = [ "libreoffice-calc.desktop" ];
   slidedeck = [ "libreoffice-impress.desktop" ];
-  imageViewer = [ "gthumb.desktop" ];
+  imageViewer = [ "org.gnome.gThumb.desktop" ];
   # Extensive list of associations here:
   # https://github.com/iggut/GamiNiX/blob/8070528de419703e13b4d234ef39f05966a7fafb/system/desktop/home-main.nix#L77
   associations = {
@@ -107,6 +108,10 @@ let
     "application/vnd.wordperfect" = writer;
   };
 in
+
+lib.warnIf (hostSpec.defaults.browser == null) "default browser is not set"
+lib.warnIf (hostSpec.defaults.terminal == null) "default terminal emulator is not set"
+
 {
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
