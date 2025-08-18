@@ -274,6 +274,39 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "desktop control-tab in browser",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^app\\.zen-browser\\.zen$",
+                                            "^com\\.google\\.Chrome$",
+                                            "^org\\.mozilla\\.firefox$",
+                                            "^com\\.apple\\.Safari$",
+                                            "^com\\.brave\\.Browser$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": ["right_command"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["right_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]   
                     }
                 ]
             },

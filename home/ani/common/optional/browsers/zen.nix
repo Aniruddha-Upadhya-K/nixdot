@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs, config, hostSpec, ... }:
 
 {
   imports = [ inputs.zen-browser.homeModules.beta ];
@@ -28,6 +28,8 @@
         EmailTracking = true;
         # Exceptions = ["https://example.com"]
       };
+
+      # doesnt work in darwin for some reason
       ExtensionSettings = (
         let 
           extension = uuid: shortUrl: {
@@ -68,7 +70,7 @@
       settings = {
         "browser.newtabpage.activity-stream.showSearch" = false;
         "browser.newtabpage.activity-stream.showWeather" = false;
-        "layout.css.devPixelsPerPx" = 0.875;  # Important, otherwise everything is too much zoomed
+        "layout.css.devPixelsPerPx" = if !hostSpec.isDarwin then 0.875 else -1.0;  # Important, otherwise everything is too much zoomed in linux
         "zen.urlbar.replace-newtab" = false;
         "zen.workspaces.continue-where-left-off" = true;
         "zen.workspaces.show-workspace-indicator" = true;
