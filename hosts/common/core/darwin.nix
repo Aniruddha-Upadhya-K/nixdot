@@ -1,10 +1,12 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   # Database for aiding terminal-based programs
   environment = {
     enableAllTerminfo = true;
-    systemPackages = with pkgs; [ nh ];
+    systemPackages = with pkgs; [ 
+      nh 
+    ];
   };
 
   # This should be handled by config.security.pam.sshAgentAuth.enable
@@ -42,5 +44,5 @@
   # ========== Localization ==========
   #
   # Set your time zone.
-  time.timeZone = lib.mkDefault "Asia/Kolkata";
+  # time.timeZone = lib.mkDefault "Asia/Kolkata";
 }

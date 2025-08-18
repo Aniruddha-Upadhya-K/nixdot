@@ -44,9 +44,9 @@
     ];
     launchers = [
       "rofi"
+      "choose-gui" # for mac os
 
       # not supported yet
-      "choose-gui" # for mac os
       "wofi"
     ];
     editors = [

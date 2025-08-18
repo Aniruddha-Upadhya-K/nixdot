@@ -6,7 +6,7 @@
   programs.zsh = {
     enable = true;
     defaultKeymap = "viins";
-    dotDir = "${hostSpec.home}.config/zsh";
+    dotDir = "${hostSpec.home}/.config/zsh";
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;

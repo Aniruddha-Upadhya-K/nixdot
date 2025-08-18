@@ -46,11 +46,11 @@
     desktopEnv = "aerospace";
 
     defaults = {
-      terminal = "ghostty";
+      terminal = "kitty";
       launcher = {
         app = "choose-gui";
         cmd = ''
-          pkill choose-gui || ls /Applications/ /Applications/Utilities/ /System/Applications/ /System/Applications/Utilities/ | \
+          pkill choose || ls /Applications/ /Applications/Utilities/ /System/Applications/ /System/Applications/Utilities/ ${config.hostSpec.home}/Applications/Home\ Manager\ Apps/ | \
           grep '\.app$' | \
           sed 's/\.app$//g' | \
           choose | \

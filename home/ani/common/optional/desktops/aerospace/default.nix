@@ -3,15 +3,6 @@ let
   mainMod = "cmd-alt-ctrl";
 in 
 {
-  homebrew = {
-    brews = [ 
-      hostSpec.launcher.app 
-    ];
-    casks = [
-      "swipeaerospace" 
-    ];
-  };
-
   programs.aerospace = {
     enable = true;
     launchd.enable = true;
@@ -20,7 +11,7 @@ in
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
       
-      accordian-padding = 15;
+      accordion-padding = 15;
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
       key-mapping.preset = "qwerty";
@@ -30,38 +21,32 @@ in
       automatically-unhide-macos-hidden-apps = true;
 
       gaps = {
-        inner = {
-          horizontl = 0;
-          vertical = 0;
-        };
-        outer = {
-          left = 0;
-          bottom = 0;
-          right = 0;
-          top = 0;
-        };
+        inner.horizontal = 0;
+        inner.vertical = 0;
+        outer.left = 0;
+        outer.bottom = 0;
+        outer.right = 0;
+        outer.top = 0;
       };
 
       mode = {
         main.binding = {
-          "${mainMod}-enter" = "exec-and-forget ${hostSpec.defaults.terminal}";
-          "${mainMod}-t" = "exec-and-forget ${hostSpec.defaults.terminal}";
+          "${mainMod}-enter" = "exec-and-forget ${hostSpec.defaults.terminal}.app";
+          "${mainMod}-t" = "exec-and-forget open -na ${hostSpec.defaults.terminal}.app";
 
-          "${mainMod}-space" = hostSpec.defaults.launcher.cmd;
+          "${mainMod}-space" = "exec-and-forget ${hostSpec.defaults.launcher.cmd}";
 
           cmd-h = []; # disable "hide appllication"
           cmd-alt-h = []; # disable "hide others"
 
-          "${mainMod}-q" = ''
-              exec-and-forget osascript -e "tell appllication (path to frontmost appication text) to quit"
-            ''; # close current window
+          "${mainMod}-q" = '' exec-and-forget osascript -e 'tell application (path to frontmost application as text) to quit' ''; # close current window
 
           "${mainMod}-f" = "fullscreen";
           "${mainMod}-shift-f" = "macos-native-fullscreen";
 
           # toggle between vertical and horizontal splits
-          "${mainMod}-slash" = "layout tiles horizontal vertical";
-          "${mainMod}-comma" = "layout accordion horizontal vertical";
+          "${mainMod}-r" = "layout tiles horizontal vertical";
+          "${mainMod}-a" = "layout accordion horizontal vertical";
 
           # toggle between floating and tiling
           "${mainMod}-v" = "layout floating tiling";
@@ -91,8 +76,8 @@ in
           "${mainMod}-9" = "workspace 9";
           "${mainMod}-m" = "workspace M";
 
-          "${mainMod}-n" = "exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around next";
-          "${mainMod}-p" = "exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev";
+          "${mainMod}-n" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around next";
+          "${mainMod}-p" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around prev";
 
           "${mainMod}-shift-1" = "move-node-to-workspace --focus-follows-window 1";
           "${mainMod}-shift-2" = "move-node-to-workspace --focus-follows-window 2";
@@ -105,13 +90,15 @@ in
           "${mainMod}-shift-9" = "move-node-to-workspace --focus-follows-window 9";
           "${mainMod}-shift-m" = "move-node-to-workspace --focus-follows-window M";
 
-          "${mainMod}-n" = "exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace move-node-to-workspace --focus-follows-window next";
-          "${mainMod}-p" = "exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace move-node-to-workspace --focus-follows-window prev";
+          "${mainMod}-shift-n" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window next";
+          "${mainMod}-shift-p" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window prev";
 
           "${mainMod}-tab" = "workspace-back-and-forth";
 
+          "${mainMod}-s" = "exec-and-forget screencapture -i";
+          "${mainMod}-shift-s" = "exec-and-forget screencapture -i -c";
+
           "${mainMod}-w" = "mode manage";
-          "${mainMod}-" = "";
         };
 
         manage.binding = {
@@ -140,10 +127,10 @@ in
           k = "focus --boundaries-action wrap-around-the-workspace up";
           l = "focus --boundaries-action wrap-around-the-workspace right";
 
-          shit-h = "move left";
-          shit-j = "move down";
-          shit-k = "move up";
-          shit-l = "move right";
+          shift-h = "move left";
+          shift-j = "move down";
+          shift-k = "move up";
+          shift-l = "move right";
         };
       };
     };

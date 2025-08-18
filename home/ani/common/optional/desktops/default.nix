@@ -21,6 +21,8 @@ lib.warnIf (hostSpec.desktopEnv == null) "hostSpec.desktopEnv is not set"
     ])
 
     # Nix-darwin setup
-    (lib.optional (hostSpec.desktopEnv == "aerospace") [ ])
+    (lib.optional (hostSpec.desktopEnv == "aerospace") [
+      ./aerospace
+    ])
   ];
 }

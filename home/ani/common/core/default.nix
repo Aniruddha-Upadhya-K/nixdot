@@ -40,13 +40,13 @@ in
       "$HOME/.local/bin"
     ];
     sessionVariables = {
-      FLAKE = "$HOME/.config/nixdot";
-      SHELL = "zsh";
-      TERM = lib.mkDefault "${hostSpec.defaults.terminal}";
-      TERMINAL = lib.mkDefault "${hostSpec.defaults.terminal}";
-      VISUAL = "${hostSpec.defaults.editor}";
-      EDITOR = "${hostSpec.defaults.editor}";
-      MANPAGER = "batman"; # see bat.nix
+      # FLAKE = "$HOME/.config/nixdot";
+      # SHELL = "zsh";
+      # TERM = lib.mkDefault "xterm-256color";
+      # TERMINAL = lib.mkDefault "${hostSpec.defaults.terminal}";
+      # VISUAL = "${hostSpec.defaults.editor}";
+      # EDITOR = "${hostSpec.defaults.editor}";
+      # MANPAGER = "batman"; # see bat.nix
     };
     preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
 
@@ -59,7 +59,7 @@ in
     curl
     eza # ls replacement
     dust # disk usage
-    fd # tree style ls
+    fd # better find
     fastfetch
     findutils # find
     fzf # fuzzy search
