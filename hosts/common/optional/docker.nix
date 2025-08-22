@@ -9,5 +9,12 @@ if !isDarwin then {
     };
   };
 } else {
-  environment.systemPackages = with pkgs; [ docker ];
+  # will have to run
+  # `colima start` before running docker commands
+  # also dont forget to run 
+  # `colima stop`
+  environment.systemPackages = with pkgs; [ 
+    docker 
+    colima # container runtime
+  ];
 }

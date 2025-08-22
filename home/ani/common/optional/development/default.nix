@@ -3,6 +3,7 @@
 {
   imports = [
     ./tmux
+    ./starship.nix
   ];
 
   home.packages = with pkgs; [

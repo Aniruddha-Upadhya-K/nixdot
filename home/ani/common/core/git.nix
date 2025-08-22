@@ -4,7 +4,6 @@
 {
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
 
     userName = hostSpec.handle;
     userEmail = hostSpec.email;

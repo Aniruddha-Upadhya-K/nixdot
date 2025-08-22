@@ -31,6 +31,7 @@
       #
       # ========== Optional Configs ==========
       #
+      "hosts/common/optional/development"
       "hosts/common/optional/services/greetd.nix" # display manager
       "hosts/common/optional/services/postgressql.nix" # postgres server
       "hosts/common/optional/services/printing.nix" # CUPS

@@ -27,6 +27,7 @@
       #
       # ========== Optional Configs ==========
       #
+      "hosts/common/optional/development"
       "hosts/common/optional/homebrew.nix" # homebrew to install mac specific applications
       "hosts/common/optional/darwin-tools.nix"
       # "hosts/common/optional/services/postgressql.nix" # Currently nix-darwin does not support postgresql initialScript, ensureDatabases, or ensureUsers

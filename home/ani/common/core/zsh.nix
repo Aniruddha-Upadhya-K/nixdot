@@ -32,8 +32,8 @@
       export PATH=$PATH:~/.local/bin/
 
       # Shell integrations
-      eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/omp.toml)"
-      eval "$(zoxide init --cmd cd zsh)"
+      # eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/omp.toml)"
+      # eval "$(zoxide init --cmd cd zsh)"
 
       # Autosuggest
       ZSH_AUTOSUGGEST_USE_ASYNC="true"
