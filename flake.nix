@@ -34,7 +34,7 @@
             system = "aarch64-darwin";
             modules = [ ./hosts/darwin/${host} ];
           };
-        }) (builtins.attrNames (builtins.readDir ./hosts/darwin))
+        }) (builtins.filter (name: name != "common") (builtins.attrNames (builtins.readDir ./hosts/darwin)))
       );
       
             #

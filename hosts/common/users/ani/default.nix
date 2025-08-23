@@ -9,6 +9,7 @@
 }:
 let
   hostSpec = config.hostSpec;
+  platform = if isDarwin then "darwin" else "nixos";
 in
 {
   users.users.${hostSpec.username} = {
@@ -33,7 +34,7 @@ in
       lib.optional (!hostSpec.isMinimal) [
         (
           { config, ... }:
-          import (lib.custom.relativeToRoot "home/${hostSpec.username}/${hostSpec.hostName}.nix") {
+          import (lib.custom.relativeToRoot "home/${hostSpec.username}/${platform}/${hostSpec.hostName}.nix") {
             inherit
               pkgs
               inputs

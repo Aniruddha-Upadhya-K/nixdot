@@ -28,11 +28,16 @@
       # ========== Optional Configs ==========
       #
       "hosts/common/optional/development"
-      "hosts/common/optional/homebrew.nix" # homebrew to install mac specific applications
-      "hosts/common/optional/darwin-tools.nix"
       # "hosts/common/optional/services/postgressql.nix" # Currently nix-darwin does not support postgresql initialScript, ensureDatabases, or ensureUsers
       "hosts/common/optional/docker.nix" 
       # "hosts/common/optional/stylix.nix" # system theme
+
+      #
+      # ========== Darwin Only Configs ==========
+      #
+      "hosts/darwin/common/homebrew.nix" # homebrew to install mac specific applications
+      "hosts/darwin/common/darwin-tools.nix"
+      "hosts/darwin/common/kanata.nix"
     ])
   ];
 
