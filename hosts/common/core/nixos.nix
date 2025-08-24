@@ -1,5 +1,5 @@
 # Core functionality for every nixos host
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   # Database for aiding terminal-based programs
   environment.enableAllTerminfo = true;
@@ -29,6 +29,14 @@
   # For testing with 'nixos-rebuild build-vm --flake ...'
   virtualisation.vmVariant = {
     users.users.root.password = "";
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    programs.nix-ld.libraries = with pkgs; [
+      # Add any missing dynamic libraries for unpackaged
+      # programs here, NOT in environment.systemPackages
+    ];
   };
 
   #

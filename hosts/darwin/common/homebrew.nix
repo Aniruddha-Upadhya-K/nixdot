@@ -13,7 +13,6 @@
       "homebrew/homebrew-core"   = inputs.homebrew-core;
       "homebrew/homebrew-cask"   = inputs.homebrew-cask;
       "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-      "argoproj/homebrew-tap"    = inputs.homebrew-tap;
     };
     autoMigrate = true;
     mutableTaps = true;

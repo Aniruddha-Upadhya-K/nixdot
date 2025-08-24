@@ -7,9 +7,14 @@
       # see: https://github.com/nix-community/home-manager/pull/3454
       lib = nixpkgs.lib.extend
         (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+
+      # forAllSystems = nixpkgs.lib.genAttrs [
+      #   "x86_64-linux"
+      #   "aarch64-darwin"
+      # ];
     in {
       # Custom modifications/overrides to upstream packages
-      # overlays = import ./overlays { inherit inputs; };
+      overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = builtins.listToAttrs (map (host: {
         name = host;
@@ -37,7 +42,7 @@
         }) (builtins.filter (name: name != "common") (builtins.attrNames (builtins.readDir ./hosts/darwin)))
       );
       
-            #
+      #
       # ========= Packages =========
       #
       # Expose custom packages
@@ -46,13 +51,6 @@
         NOTE: This is only for exposing packages exterally; ie, `nix build .#packages.x86_64-linux.cd-gitroot`
         For internal use, these packages are added through the default overlay in `overlays/default.nix`
       */
-
-      # forAllSystems = nixpkgs.lib.genAttrs [
-        #"x86_64-linux"
-        #"aarch64-darwin"
-      #];
-
-
       # packages = forAllSystems (
       #   system:
       #   let

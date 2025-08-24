@@ -29,5 +29,20 @@
         RunAtLoad = true;
       };
     };
+
+    "com.custom.kanata-vk-agent" = {
+      command = "/opt/homebrew/bin/kanata-vk-agent -p 5829 -b net.kovidgoyal.kitty,com.github.wez.wezterm,com.mitchellh.ghostty -i com.apple.keylayout.US";
+
+      serviceConfig = {
+        Label = "com.custom.kanata-vk-agent";
+        KeepAlive = {
+          SuccessfulExit = false;
+          Crashed = true;
+        };
+        RunAtLoad = true;
+        StandardOutPath = "/Library/Logs/Kanata-Vk-Agent/kanata_vk_agent.out.log";
+        StandardErrorPath = "/Library/Logs/Kanata-Vk-Agent/kanata_vk_agent.error.log";
+      };
+    };
   };
 }
