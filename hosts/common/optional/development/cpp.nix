@@ -23,7 +23,7 @@ in
     gnumake
     cmake
     gdb
-    clangStdenv
+    clang-tools
     bear
 
     (lib.optional (!isDarwin) [

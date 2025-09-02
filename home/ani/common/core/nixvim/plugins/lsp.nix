@@ -14,10 +14,10 @@
       lua_ls.enable = true;
       markdown_oxide.enable = true;
       nixd.enable = true;
-      prismals = {
-        enable = true;
-        package = null;
-      };
+      # prismals = {
+      #   enable = true;
+      #   package = null;
+      # };
       ruff.enable = true;
       rust_analyzer = {
         enable = true;

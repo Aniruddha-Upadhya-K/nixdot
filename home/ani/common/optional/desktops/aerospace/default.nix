@@ -99,6 +99,15 @@ in
           "${mainMod}-shift-s" = "exec-and-forget screencapture -i -c";
 
           "${mainMod}-w" = "mode manage";
+
+          # media keys
+          "${mainMod}-f12" = "volume up";
+          "${mainMod}-f11" = "volume down";
+          "${mainMod}-f10" = "volume mute-toggle";
+
+          # brightness
+          "${mainMod}-f1" = '' exec-and-forget osascript -e 'tell application "System Events"' -e 'key code 144' -e ' end tell' '';
+          "${mainMod}-f2" = '' exec-and-forget osascript -e 'tell application "System Events"' -e 'key code 145' -e ' end tell' '';
         };
 
         manage.binding = {
@@ -113,10 +122,6 @@ in
           alt-j = [ "join-with down" "mode main" ];
           alt-k = [ "join-with up" "mode main" ];
           alt-l = [ "join-with right" "mode main" ];
-
-          down = "volume down";
-          up = "volume up";
-          shift-down = [ "volume set 0" "mode main" ];
 
           minus = "resize smart -25";
           equal = "resize smart +25";
