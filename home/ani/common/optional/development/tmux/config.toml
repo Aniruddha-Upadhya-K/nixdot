@@ -1,0 +1,6 @@
+session_sort_order = "LastAttached"
+bookmarks = [ "${HOME}/.config/nixdot" ]
+
+[[search_dirs]]
+path = "${HOME}/documents/projects/"
+depth = 10
