@@ -1,0 +1,63 @@
+(defcfg override-release-on-activation yes)
+
+(defoverrides
+  (lmet bspc) (lalt bspc)
+  (lmet left) (lalt left)
+  (lmet right) (lalt right)
+
+  (rmet bspc) (ralt bspc)
+  (rmet left) (ralt left)
+  (rmet right) (ralt right)
+)
+
+(defvar
+  tap-time  200
+  hold-time 200
+
+  tt $tap-time
+  ht $hold-time
+)
+
+(defalias
+  sup (multi lalt lmet lctl)
+  ctl (switch 
+    ((input virtual net.kovidgoyal.kitty)) lctl break
+    ((input virtual com.mitchellh.ghostty)) lctl break
+    ((input virtual com.github.wez.wezterm)) lctl break
+    () lmet break
+  )
+
+  a (tap-hold $tt $ht a lsft)
+  s (tap-hold $tt $ht s lalt)
+  d (tap-hold $tt $ht d @sup)
+  f (tap-hold $tt $ht f @ctl)
+
+  j (tap-hold $tt $ht j @ctl)
+  k (tap-hold $tt $ht k @sup)
+  l (tap-hold $tt $ht l ralt)
+  ; (tap-hold $tt $ht ; rsft)
+)
+
+(defsrc 
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  fn   lctl lalt lmet           spc            rmet ralt rctl
+)
+
+(deflayer modifiers
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  lctl @a   @s   @d   @f   _    _    @j   @k   @l   @;   _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    @ctl @sup lalt              _           ralt rmet _
+)
+
+(defvirtualkeys
+  com.apple.keylayout.US nop0
+
+  net.kovidgoyal.kitty nop0
+  com.github.wez.wezterm nop0
+  com.mitchellh.ghostty nop0
+)
