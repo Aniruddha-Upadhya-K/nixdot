@@ -10,7 +10,7 @@
   # other languages
   environment.systemPackages = with pkgs; [
     python3
-    jdk23
+    jdk
     cargo
     go
   ];

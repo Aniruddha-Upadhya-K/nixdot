@@ -4,6 +4,7 @@
   config,
   lib,
   pkgs,
+  outputs,
   isDarwin,
   ...
 }:
@@ -56,9 +57,9 @@ in
   # ========== Overlays ==========
   #
   nixpkgs = {
-    # overlays = [
-    #   outputs.overlays.default
-    # ];
+    overlays = [
+      outputs.overlays.default
+    ];
     config = {
       allowUnfree = true;
     };

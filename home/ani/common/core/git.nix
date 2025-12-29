@@ -5,25 +5,12 @@
   programs.git = {
     enable = true;
 
-    userName = hostSpec.handle;
-    userEmail = hostSpec.email;
+    settings = {
+      user = {
+        name = hostSpec.handle;
+        email = hostSpec.email;
+      };
 
-    ignores = [
-      ".csvignore"
-      # nix
-      "*.drv"
-      "result"
-      # python
-      "*.py?"
-      "__pycache__/"
-      ".venv/"
-      # direnv
-      ".direnv"
-      # javascript
-      "node_modules/"
-    ];
-
-    extraConfig = {
       core.pager = "delta";
       delta = {
         enable = true;
@@ -80,5 +67,20 @@
       # Makes single line json diffs easier to read
       diff.json.textconv = "jq --sort-keys .";
     };
+
+    ignores = [
+      ".csvignore"
+      # nix
+      "*.drv"
+      "result"
+      # python
+      "*.py?"
+      "__pycache__/"
+      ".venv/"
+      # direnv
+      ".direnv"
+      # javascript
+      "node_modules/"
+    ];
   };
 }

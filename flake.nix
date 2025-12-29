@@ -69,7 +69,13 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+
+    # Pin a specific nixpkgs revision with GTK+3 3.24.49 for zen-browser
+    # nixpkgs-pinned-gtk3 = {
+    #   url = "github:NixOS/nixpkgs/5b5b46259bef947314345ab3f702c56b7788cab8";
+    #   flake = false; # This is not a flake, just a source tree
+    # };
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
