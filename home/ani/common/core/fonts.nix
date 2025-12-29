@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     liberation_ttf
-    ubuntu_font_family
+    ubuntu-classic
     nerd-fonts.hack
   ];
 

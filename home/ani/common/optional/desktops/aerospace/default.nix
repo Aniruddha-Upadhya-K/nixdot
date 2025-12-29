@@ -1,23 +1,19 @@
 { hostSpec, ... }:
-let
-  mainMod = "cmd-alt-ctrl";
-in 
-{
+let mainMod = "cmd-alt-ctrl";
+in {
   programs.aerospace = {
     enable = true;
     launchd.enable = true;
 
-    userSettings = {
+    settings = {
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
-      
+
       accordion-padding = 15;
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
       key-mapping.preset = "qwerty";
-      on-focused-monitor-changed = [
-        "move-mouse monitor-lazy-center"
-      ];
+      on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
       automatically-unhide-macos-hidden-apps = true;
 
       gaps = {
@@ -31,15 +27,19 @@ in
 
       mode = {
         main.binding = {
-          "${mainMod}-enter" = "exec-and-forget ${hostSpec.defaults.terminal}.app";
-          "${mainMod}-t" = "exec-and-forget open -na ${hostSpec.defaults.terminal}.app";
+          "${mainMod}-enter" =
+            "exec-and-forget ${hostSpec.defaults.terminal}.app";
+          "${mainMod}-t" =
+            "exec-and-forget open -na ${hostSpec.defaults.terminal}.app";
 
-          "${mainMod}-space" = "exec-and-forget ${hostSpec.defaults.launcher.cmd}";
+          "${mainMod}-space" =
+            "exec-and-forget ${hostSpec.defaults.launcher.cmd}";
 
-          cmd-h = []; # disable "hide appllication"
-          cmd-alt-h = []; # disable "hide others"
+          cmd-h = [ ]; # disable "hide appllication"
+          cmd-alt-h = [ ]; # disable "hide others"
 
-          "${mainMod}-q" = '' exec-and-forget osascript -e 'tell application (path to frontmost application as text) to quit' ''; # close current window
+          "${mainMod}-q" =
+            "exec-and-forget osascript -e 'tell application (path to frontmost application as text) to quit' "; # close current window
 
           "${mainMod}-f" = "fullscreen";
           "${mainMod}-shift-f" = "macos-native-fullscreen";
@@ -51,10 +51,14 @@ in
           # toggle between floating and tiling
           "${mainMod}-v" = "layout floating tiling";
 
-          "${mainMod}-h" = "focus --boundaries-action wrap-around-the-workspace left";
-          "${mainMod}-j" = "focus --boundaries-action wrap-around-the-workspace down";
-          "${mainMod}-k" = "focus --boundaries-action wrap-around-the-workspace up";
-          "${mainMod}-l" = "focus --boundaries-action wrap-around-the-workspace right";
+          "${mainMod}-h" =
+            "focus --boundaries-action wrap-around-the-workspace left";
+          "${mainMod}-j" =
+            "focus --boundaries-action wrap-around-the-workspace down";
+          "${mainMod}-k" =
+            "focus --boundaries-action wrap-around-the-workspace up";
+          "${mainMod}-l" =
+            "focus --boundaries-action wrap-around-the-workspace right";
 
           "${mainMod}-shift-h" = "move left";
           "${mainMod}-shift-j" = "move down";
@@ -76,22 +80,36 @@ in
           "${mainMod}-9" = "workspace 9";
           "${mainMod}-m" = "workspace M";
 
-          "${mainMod}-n" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around next";
-          "${mainMod}-p" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around prev";
+          "${mainMod}-n" =
+            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around next";
+          "${mainMod}-p" =
+            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around prev";
 
-          "${mainMod}-shift-1" = "move-node-to-workspace --focus-follows-window 1";
-          "${mainMod}-shift-2" = "move-node-to-workspace --focus-follows-window 2";
-          "${mainMod}-shift-3" = "move-node-to-workspace --focus-follows-window 3";
-          "${mainMod}-shift-4" = "move-node-to-workspace --focus-follows-window 4";
-          "${mainMod}-shift-5" = "move-node-to-workspace --focus-follows-window 5";
-          "${mainMod}-shift-6" = "move-node-to-workspace --focus-follows-window 6";
-          "${mainMod}-shift-7" = "move-node-to-workspace --focus-follows-window 7";
-          "${mainMod}-shift-8" = "move-node-to-workspace --focus-follows-window 8";
-          "${mainMod}-shift-9" = "move-node-to-workspace --focus-follows-window 9";
-          "${mainMod}-shift-m" = "move-node-to-workspace --focus-follows-window M";
+          "${mainMod}-shift-1" =
+            "move-node-to-workspace --focus-follows-window 1";
+          "${mainMod}-shift-2" =
+            "move-node-to-workspace --focus-follows-window 2";
+          "${mainMod}-shift-3" =
+            "move-node-to-workspace --focus-follows-window 3";
+          "${mainMod}-shift-4" =
+            "move-node-to-workspace --focus-follows-window 4";
+          "${mainMod}-shift-5" =
+            "move-node-to-workspace --focus-follows-window 5";
+          "${mainMod}-shift-6" =
+            "move-node-to-workspace --focus-follows-window 6";
+          "${mainMod}-shift-7" =
+            "move-node-to-workspace --focus-follows-window 7";
+          "${mainMod}-shift-8" =
+            "move-node-to-workspace --focus-follows-window 8";
+          "${mainMod}-shift-9" =
+            "move-node-to-workspace --focus-follows-window 9";
+          "${mainMod}-shift-m" =
+            "move-node-to-workspace --focus-follows-window M";
 
-          "${mainMod}-shift-n" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window next";
-          "${mainMod}-shift-p" = "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window prev";
+          "${mainMod}-shift-n" =
+            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window next";
+          "${mainMod}-shift-p" =
+            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window prev";
 
           "${mainMod}-tab" = "workspace-back-and-forth";
 
@@ -106,8 +124,10 @@ in
           "${mainMod}-f10" = "volume mute-toggle";
 
           # brightness
-          "${mainMod}-f1" = '' exec-and-forget osascript -e 'tell application "System Events"' -e 'key code 144' -e ' end tell' '';
-          "${mainMod}-f2" = '' exec-and-forget osascript -e 'tell application "System Events"' -e 'key code 145' -e ' end tell' '';
+          "${mainMod}-f1" = ''
+            exec-and-forget osascript -e 'tell application "System Events"' -e 'key code 144' -e ' end tell' '';
+          "${mainMod}-f2" = ''
+            exec-and-forget osascript -e 'tell application "System Events"' -e 'key code 145' -e ' end tell' '';
         };
 
         manage.binding = {

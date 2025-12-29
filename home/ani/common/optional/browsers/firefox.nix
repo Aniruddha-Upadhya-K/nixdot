@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   # Inspiration:
@@ -8,11 +8,15 @@
   # - https://github.com/Kreyren/nixos-config/blob/bd4765eb802a0371de7291980ce999ccff59d619/nixos/users/kreyren/home/modules/web-browsers/firefox/firefox.nix#L116-L148
   programs.firefox = {
     enable = true;
+    # package =
+      # (pkgs.wrapFirefox.override { libcanberra-gtk3 = pkgs.libcanberra-gtk2; })
+      # pkgs.firefox-unwrapped { };
 
     # Refer to https://mozilla.github.io/policy-templates or `about:policies#documentation` in firefox
     policies = {
       AppAutoUpdate = false; # Disable automatic application update
-      BackgroundAppUpdate = false; # Disable automatic application update in the background, when the application is not running.
+      BackgroundAppUpdate =
+        false; # Disable automatic application update in the background, when the application is not running.
       DefaultDownloadDirectory = "${config.home.homeDirectory}/downloads";
       DisableBuiltinPDFViewer = false;
       DisableFirefoxStudies = true;
