@@ -22,12 +22,12 @@ in
     gcc
     gnumake
     cmake
-    gdb
     clang-tools
     bear
 
     (lib.optional (!isDarwin) [
       valgrind # does not work in mac
+      gdb
     ])
   ]);
 } // option

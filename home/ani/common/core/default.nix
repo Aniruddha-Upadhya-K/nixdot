@@ -63,6 +63,7 @@ in
     fastfetch
     findutils # find
     fzf # fuzzy search
+    hledger # double entry accounting
     jq # json pretty printer and manipulator
     nix-tree # nix package tree viewer
     ncdu # TUI disk usage
