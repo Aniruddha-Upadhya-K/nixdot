@@ -25,6 +25,10 @@ in {
         outer.top = 0;
       };
 
+      workspace-to-monitor-force-assignment = {
+        m = "monitor";
+      };
+
       mode = {
         main.binding = {
           "${mainMod}-enter" =
@@ -81,9 +85,9 @@ in {
           "${mainMod}-m" = "workspace M";
 
           "${mainMod}-n" =
-            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around next";
+            "exec-and-forget aerospace list-workspaces --all | aerospace workspace --wrap-around next --no-stdin";
           "${mainMod}-p" =
-            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace workspace --wrap-around prev";
+            "exec-and-forget aerospace list-workspaces --all | aerospace workspace --wrap-around prev --no-stdin";
 
           "${mainMod}-shift-1" =
             "move-node-to-workspace --focus-follows-window 1";
@@ -107,9 +111,9 @@ in {
             "move-node-to-workspace --focus-follows-window M";
 
           "${mainMod}-shift-n" =
-            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window next";
+            "exec-and-forget aerospace list-workspaces --all | aerospace move-node-to-workspace --focus-follows-window next --no-stdin";
           "${mainMod}-shift-p" =
-            "exec-and-forget aerospace list-workspaces --monitor focused | aerospace move-node-to-workspace --focus-follows-window prev";
+            "exec-and-forget aerospace list-workspaces --all | aerospace move-node-to-workspace --focus-follows-window prev --no-stdin";
 
           "${mainMod}-tab" = "workspace-back-and-forth";
 
