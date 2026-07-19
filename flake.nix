@@ -95,10 +95,6 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-    homebrew-tap = {
-      url = "github:argoproj/homebrew-tap";
-      flake = false;
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";

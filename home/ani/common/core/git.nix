@@ -18,26 +18,24 @@
           [ "side-by-side" "line-numbers" "hyperlinks" "commit-decoration" ];
       };
 
-      extraConfig = {
-        init.defaultBranch = "main";
-        pull.ff = "only";
-        status = {
-          branch = true;
-          showStash = true;
-          showUntrackedFiles = "all"; # show individual untracked files
-        };
-        push = {
-          autoSetupRemote = true; # easier to push new branches
-          default = "current"; # push only current branch by default
-        };
-        core = {
-          editor = "nvim";
-          preloadIndex = true;
-        };
-        diff = { tool = "nvimdiff"; };
-        log = { abbrevCommit = true; };
-        merge = { tool = "nvimdiff"; };
+      init.defaultBranch = "main";
+      pull.ff = "only";
+      status = {
+        branch = true;
+        showStash = true;
+        showUntrackedFiles = "all"; # show individual untracked files
       };
+      push = {
+        autoSetupRemote = true; # easier to push new branches
+        default = "current"; # push only current branch by default
+      };
+      core = {
+        editor = "nvim";
+        preloadIndex = true;
+      };
+      diff = { tool = "nvimdiff"; };
+      log = { abbrevCommit = true; };
+      merge = { tool = "nvimdiff"; };
 
       # pre-emptively ignore mac crap
       core.excludeFiles = builtins.toFile "global-gitignore" ''

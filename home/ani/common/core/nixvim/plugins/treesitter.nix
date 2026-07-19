@@ -11,6 +11,7 @@
       java
       javascript
       json
+      ledger
       lua
       make
       markdown
