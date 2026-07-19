@@ -6,6 +6,7 @@ assert lib.assertMsg isDarwin "importing homebrew in non-macos system";
   homebrew = {
     taps = [
       "devsunb/tap"
+      "mediosz/tap"
     ];
     brews = lib.flatten [ 
       (lib.optional (config.hostSpec.desktopEnv == "aerospace") [
@@ -18,9 +19,9 @@ assert lib.assertMsg isDarwin "importing homebrew in non-macos system";
       # essentials
       "middleclick"
       "karabiner-elements"
-      "sanesidebuttons"
-      "unnaturalscrollwheels"
-      "openmtp"
+      # "sanesidebuttons"
+      # "unnaturalscrollwheels"
+      # "openmtp"
 
       # media
       "obs"
@@ -31,5 +32,9 @@ assert lib.assertMsg isDarwin "importing homebrew in non-macos system";
         "swipeaerospace" 
       ])
     ];
+  };
+
+  environment.variables = {
+    EDITOR = config.hostSpec.defaults.editor;
   };
 }

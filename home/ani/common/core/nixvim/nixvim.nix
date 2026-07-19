@@ -26,6 +26,10 @@
   };
 
   opts = {
+    # security
+    modeline = false; # solution for CVE-2007-2438, which allows remote code execution while opening any file
+
+    # defaults
     number = true;
     relativenumber = true;
     mouse = "a"; # Enable mouse control
